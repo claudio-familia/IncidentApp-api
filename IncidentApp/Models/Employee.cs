@@ -14,7 +14,11 @@ namespace IncidentApp.Models
         public string PhoneNumber { get; set; }
         public DateTime BornDate { get; set; }
 
+        #region relations
+
         public User User { get; set; }
         public Position Position { get; set; }
+
+        #endregion
     }
 }

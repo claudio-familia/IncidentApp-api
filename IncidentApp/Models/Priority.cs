@@ -11,6 +11,10 @@ namespace IncidentApp.Models
         public int SLAId { get; set; }
         public string Name { get; set; }
 
+        #region relations
+
         public SLA SLA { get; set; }
+
+        #endregion
     }
 }

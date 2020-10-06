@@ -17,9 +17,13 @@ namespace IncidentApp.Models
         public DateTime ClosedDate { get; set; }
         public string ClosedComment { get; set; }
 
+        #region relations
+
         public Priority Priority { get; set; }
         public Department Department { get; set; }
         public User ReportedUser { get; set; }
         public User AssignedUser { get; set; }
+
+        #endregion
     }
 }
