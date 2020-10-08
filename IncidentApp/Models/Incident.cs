@@ -23,6 +23,7 @@ namespace IncidentApp.Models
         public Department Department { get; set; }
         public User ReportedUser { get; set; }
         public User AssignedUser { get; set; }
+        public ICollection<IncidentHistory> IncidentHistory { get; set; }
 
         #endregion
     }
