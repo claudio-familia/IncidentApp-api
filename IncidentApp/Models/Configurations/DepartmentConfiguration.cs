@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace IncidentApp.Models.Configurations
 {
@@ -13,10 +9,13 @@ namespace IncidentApp.Models.Configurations
         {
             builder.ToTable("Departamentos");
 
-            builder.HasKey(x => x.Id);            
+            builder.HasKey(x => x.Id);
+            builder.HasMany(x => x.Positions);
+            builder.HasOne(x => x.Creator);
+            builder.HasOne(x => x.Updater);
 
             builder.Property(x => x.Id).HasColumnName("DepartamentoId");
-            builder.Property(x => x.Name).HasColumnName("Nombre").HasMaxLength(100);
+            builder.Property(x => x.Name).HasColumnName("Nombre").HasMaxLength(100).IsRequired();
 
             builder.Property(x => x.Status).HasColumnName("Estatus").HasMaxLength(2);
             builder.Property(x => x.IsDeleted).HasColumnName("Borrado");

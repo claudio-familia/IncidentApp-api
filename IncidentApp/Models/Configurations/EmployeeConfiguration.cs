@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace IncidentApp.Models.Configurations
 {
@@ -14,14 +10,18 @@ namespace IncidentApp.Models.Configurations
             builder.ToTable("Empleados");
 
             builder.HasKey(x => x.Id);
+            builder.HasOne(x => x.Position);
+            builder.HasOne(x => x.User);
+            builder.HasOne(x => x.Creator);
+            builder.HasOne(x => x.Updater);
 
             builder.Property(x => x.Id).HasColumnName("EmpleadoId");
             builder.Property(x => x.PositionId).HasColumnName("PuestoId");
             builder.Property(x => x.UserId).HasColumnName("UsuarioId");
-            builder.Property(x => x.Name).HasColumnName("Nombre").HasMaxLength(100);
-            builder.Property(x => x.LastName).HasColumnName("Apellido").HasMaxLength(100);
-            builder.Property(x => x.BornDate).HasColumnName("FechaNacimiento").HasColumnType ("datetimeoffset");
-            builder.Property(x => x.Cedula).HasColumnName("Cedula").HasMaxLength(11);
+            builder.Property(x => x.Name).HasColumnName("Nombre").HasMaxLength(100).IsRequired();
+            builder.Property(x => x.LastName).HasColumnName("Apellido").HasMaxLength(100).IsRequired();
+            builder.Property(x => x.BornDate).HasColumnName("FechaNacimiento").HasColumnType("datetimeoffset");
+            builder.Property(x => x.Cedula).HasColumnName("Cedula").HasMaxLength(11).IsRequired();
             builder.Property(x => x.Email).HasColumnName("Correo").HasMaxLength(50);
             builder.Property(x => x.PhoneNumber).HasColumnName("Telefono").HasMaxLength(15);
 

@@ -11,5 +11,12 @@ namespace IncidentApp.Models.Base
         public DateTime CreatedAt { get; set; }
         public int UpdatedBy { get; set; }
         public DateTime UpdatedAt { get; set; }
+
+        #region relations
+
+        public User Creator { get; set; }
+        public User Updater { get; set; }        
+
+        #endregion
     }
 }

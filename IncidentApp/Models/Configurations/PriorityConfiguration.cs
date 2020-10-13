@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace IncidentApp.Models.Configurations
 {
@@ -13,9 +9,14 @@ namespace IncidentApp.Models.Configurations
         {
             builder.ToTable("Prioridades");
 
+            builder.HasKey(x => x.Id);
+            builder.HasOne(x => x.SLA);
+            builder.HasOne(x => x.Creator);
+            builder.HasOne(x => x.Updater);
+
             builder.Property(x => x.Id).HasColumnName("PrioridadId");
             builder.Property(x => x.SLAId).HasColumnName("SLAId");
-            builder.Property(x => x.Name).HasColumnName("Nombre");            
+            builder.Property(x => x.Name).HasColumnName("Nombre").IsRequired();
 
             builder.Property(x => x.Status).HasColumnName("Estatus").HasMaxLength(2);
             builder.Property(x => x.IsDeleted).HasColumnName("Borrado");

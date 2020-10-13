@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace IncidentApp.Models.Configurations
 {
@@ -14,15 +10,22 @@ namespace IncidentApp.Models.Configurations
             builder.ToTable("Incidentes");
 
             builder.HasKey(x => x.Id);
+            builder.HasOne(x => x.Priority);
+            builder.HasOne(x => x.Department);
+            builder.HasOne(x => x.ReportedUser);
+            builder.HasOne(x => x.AssignedUser);
+            builder.HasMany(x => x.IncidentHistory);
+            builder.HasOne(x => x.Creator);
+            builder.HasOne(x => x.Updater);
 
             builder.Property(x => x.Id).HasColumnName("IncidenteId");
-            builder.Property(x => x.ReportedUserId).HasColumnName("UsuarioReportaId");
+            builder.Property(x => x.ReportedUserId).HasColumnName("UsuarioReportaId").IsRequired();
             builder.Property(x => x.AssignedUserId).HasColumnName("UsuarioAsignadoId");
             builder.Property(x => x.PriorityId).HasColumnName("PrioridadId");
             builder.Property(x => x.DepartmentId).HasColumnName("DepartamentoId");
 
-            builder.Property(x => x.Title).HasColumnName("Titulo").HasMaxLength(200);
-            builder.Property(x => x.Description).HasColumnName("Descripcion");
+            builder.Property(x => x.Title).HasColumnName("Titulo").HasMaxLength(200).IsRequired();
+            builder.Property(x => x.Description).HasColumnName("Descripcion").IsRequired();
             builder.Property(x => x.ClosedDate).HasColumnName("FechaCierre").HasColumnType("datetimeoffset");
             builder.Property(x => x.ClosedComment).HasColumnName("ComentarioCierre").HasMaxLength(500);
 
