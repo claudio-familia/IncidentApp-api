@@ -29,12 +29,12 @@ namespace IncidentApp.Repository.Base
             return entity;
         }
 
-        public bool Exists(Func<IQueryable<T>, IQueryable<T>> transform, Expression<Func<T, bool>> filter = null)
+        public bool Exists(Expression<Func<T, bool>> filter = null)
         {
             return db.Where(filter).Count() > 0;
         }
 
-        public IEnumerable<T> Find(Func<IQueryable<T>, IQueryable<T>> transform, Expression<Func<T, bool>> filter = null)
+        public IEnumerable<T> Find(Expression<Func<T, bool>> filter = null)
         {
             return db.Where(filter).AsEnumerable();
         }
