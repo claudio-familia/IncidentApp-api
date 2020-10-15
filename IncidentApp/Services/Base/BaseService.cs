@@ -2,13 +2,11 @@
 using IncidentApp.Services.Base.Contracts;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace IncidentApp.Services.Base
 {
-    public class BaseService<T, TDto> : IBaseService<T, TDto> where T : class where TDto : class
+    public class BaseService<T> : IBaseService<T> where T : class
     {
         private readonly IBaseRepository<T> baseRepository;
         public BaseService(IBaseRepository<T> _baseRepository)
@@ -16,7 +14,7 @@ namespace IncidentApp.Services.Base
             baseRepository = _baseRepository;
         }
 
-        public TDto Add(T entity)
+        public T Add(T entity)
         {
             return baseRepository.Create(entity);
         }
@@ -26,22 +24,22 @@ namespace IncidentApp.Services.Base
             return baseRepository.Exists(filter);
         }
 
-        public IEnumerable<TDto> Find(Expression<Func<T, bool>> filter = null)
+        public IEnumerable<T> Find(Expression<Func<T, bool>> filter = null)
         {
             return baseRepository.Find(filter);
         }
 
-        public TDto Get(int id)
+        public T Get(int id)
         {
             return baseRepository.Read(id);
         }
 
-        public IEnumerable<TDto> GetAll()
+        public IEnumerable<T> GetAll()
         {
             return baseRepository.Read();
         }
 
-        public TDto Update(T entity)
+        public T Update(T entity)
         {
             return baseRepository.Update(entity);
         }
