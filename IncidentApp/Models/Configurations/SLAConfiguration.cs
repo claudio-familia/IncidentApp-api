@@ -19,8 +19,8 @@ namespace IncidentApp.Models.Configurations
 
             builder.Property(x => x.Status).HasColumnName("Estatus").HasMaxLength(2);
             builder.Property(x => x.IsDeleted).HasColumnName("Borrado");
-            builder.Property(x => x.CreatedAt).HasColumnName("FechaRegistro").HasColumnType("datetimeoffset"); ;
-            builder.Property(x => x.UpdatedAt).HasColumnName("FechaModificacion").HasColumnType("datetimeoffset"); ;
+            builder.Property(x => x.CreatedAt).HasColumnName("FechaRegistro");
+            builder.Property(x => x.UpdatedAt).HasColumnName("FechaModificacion");
             builder.Property(x => x.CreatedBy).HasColumnName("CreadoPor");
             builder.Property(x => x.UpdatedBy).HasColumnName("ModificadoPor");
         }

@@ -6,7 +6,7 @@ namespace IncidentApp.Models
     public class Employee : EntityBase
     {
         public int PositionId { get; set; }
-        public int? UserId { get; set; }
+        public int UserId { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Cedula { get; set; }
