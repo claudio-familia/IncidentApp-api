@@ -7,9 +7,9 @@ namespace IncidentApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DeparmentController : BaseController<Department>
+    public class EmployeeController : BaseController<Employee>
     {
-        public DeparmentController(IBaseService<Department> _baseService) : base(_baseService)
+        public EmployeeController(IBaseService<Employee> _baseService) : base(_baseService)
         {
         }
     }
