@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace IncidentApp.Repository.Base
 {
@@ -23,7 +22,7 @@ namespace IncidentApp.Repository.Base
         public T Create(T entity)
         {
             db.Add(entity);
-            
+
             context.SaveChanges();
 
             return entity;
