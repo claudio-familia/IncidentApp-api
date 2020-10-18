@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
@@ -48,36 +49,40 @@ namespace IncidentApp.Services
 
                     if(user != null)
                     {
-                        return new OkObjectResult(new { user, token = GenerateTokenForUser(user.Id) });
+                        return new OkObjectResult(new { user.Username, token = GenerateJWT(user) });
                     }
 
                     return new UnauthorizedObjectResult("Invalid Password");
                 }
 
                 return new NotFoundObjectResult("Invalid User");
-            }catch(Exception ex)
+            }catch(Exception)
             {
                 return new StatusCodeResult((int)HttpStatusCode.InternalServerError);
             }
         }
 
-        private SecurityToken GenerateTokenForUser(int UserId)
-        {            
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(configuration["Authentication:SecretKey"]);
-            var tokenDescriptor = new SecurityTokenDescriptor
+        private string GenerateJWT(User user)
+        {
+            List<Claim> claims = new List<Claim>()
             {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.NameIdentifier, UserId.ToString())
-                }),
-                Expires = DateTime.UtcNow.AddMinutes(60),
-                Issuer = configuration["Authentication:Issuer"],
-                Audience = configuration["Authentication:Audience"],                
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha512Signature)
+                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                 new Claim(ClaimTypes.Name, user.Username.ToString())
             };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return token;
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Authentication:SecretKey"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+            var expires = DateTime.Now.AddMinutes(60);
+
+            var token = new JwtSecurityToken(
+                issuer: configuration["Authentication:Issuer"],
+                audience: configuration["Authentication:Audience"],
+                claims,
+                expires: expires,
+                signingCredentials: creds
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }
