@@ -7,6 +7,7 @@ namespace IncidentApp.Models.Dtos
 {
     public class IncidentDto
     {
+        public int Id { get; set; }
         public int ReportedUserId { get; set; }
         public int AssignedUserId { get; set; }
         public int PriorityId { get; set; }

@@ -48,22 +48,26 @@ namespace IncidentApp.Services
 
         public bool Exists(Expression<Func<Position, bool>> filter = null)
         {
-            return baseRepository.Find(filter).Any();
+            return baseRepository.Find(filter).Where(x => !x.IsDeleted).Any();
         }
 
         public IEnumerable<Position> Find(Expression<Func<Position, bool>> filter = null)
         {
-            return baseRepository.Find(filter).ToList();
+            return baseRepository.Find(filter).Where(x => !x.IsDeleted).ToList();
         }
 
         public Position Get(int id)
         {
-            return baseRepository.Read(id);
+            Position entity = baseRepository.Read(id);
+
+            if (!entity.IsDeleted) return entity;
+
+            return null;
         }
 
         public IEnumerable<Position> GetAll()
         {
-            return baseRepository.Read();
+            return baseRepository.Read().Where(x => !x.IsDeleted).ToList();
         }
 
         public Position Update(PositionDto entity)

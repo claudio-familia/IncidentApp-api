@@ -1,53 +1,87 @@
-﻿using IncidentApp.Models;
+﻿using AutoMapper;
+using IncidentApp.Models;
 using IncidentApp.Models.Dtos;
+using IncidentApp.Repository.Base.Contracts;
 using IncidentApp.Services.Contracts;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace IncidentApp.Services
 {
     public class SLAService : IBaseService<SLA, SLADto>
     {
-        public SLAService()
+        private readonly IBaseRepository<SLA> baseRepository;
+        private readonly IMapper mapper;
+        public int UserId { get; set; }
+        public SLAService(IBaseRepository<SLA> _baseRepository, IMapper _mapper, IHttpContextAccessor httpContextAccessor)
         {
+            baseRepository = _baseRepository;
+            mapper = _mapper;
+            UserId = int.Parse(httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier) ?? "0");
         }
 
         public SLA Add(SLADto entity)
         {
-            throw new NotImplementedException();
+            SLA newSLA = mapper.Map<SLA>(entity);
+
+            newSLA.CreatedAt = DateTime.Now;
+            newSLA.CreatedBy = UserId;
+
+            return baseRepository.Create(newSLA);
         }
 
         public SLA Delete(int id)
         {
-            throw new NotImplementedException();
+            SLA sla = baseRepository.Read(id);
+
+            if (sla == null) return null;
+
+            sla.IsDeleted = true;
+
+            return baseRepository.Update(sla);
         }
 
         public bool Exists(Expression<Func<SLA, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            return baseRepository.Find(filter).Where(x => !x.IsDeleted).Any();
         }
 
         public IEnumerable<SLA> Find(Expression<Func<SLA, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            return baseRepository.Find(filter).Where(x => !x.IsDeleted).ToList();
         }
 
         public SLA Get(int id)
         {
-            throw new NotImplementedException();
+            SLA entity = baseRepository.Read(id);
+
+            if (!entity.IsDeleted) return entity;
+
+            return null;
         }
 
         public IEnumerable<SLA> GetAll()
         {
-            throw new NotImplementedException();
+            return baseRepository.Read().Where(x => !x.IsDeleted).ToList();
         }
 
         public SLA Update(SLADto entity)
         {
-            throw new NotImplementedException();
+            SLA priority = baseRepository.Read(entity.Id);
+
+            if (priority == null) return null;
+
+            priority.Hours = entity.Hours;
+            priority.Description = entity.Description;
+
+            priority.UpdatedAt = DateTime.Now;
+            priority.UpdatedBy = UserId;
+
+            return baseRepository.Update(priority);
         }
     }
 }
