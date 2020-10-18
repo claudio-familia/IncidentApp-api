@@ -11,7 +11,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
 using System.Security.Claims;
-using System.Security.Cryptography;
 using System.Text;
 
 namespace IncidentApp.Services
@@ -47,7 +46,7 @@ namespace IncidentApp.Services
                     var passwordEncrypt = Encrypt(password);
                     var user = baseRepository.Find(user => user.Username == username && user.Password == passwordEncrypt).FirstOrDefault();
 
-                    if(user != null)
+                    if (user != null)
                     {
                         return new OkObjectResult(new { user.Username, token = GenerateJWT(user) });
                     }
@@ -56,7 +55,8 @@ namespace IncidentApp.Services
                 }
 
                 return new NotFoundObjectResult("Invalid User");
-            }catch(Exception)
+            }
+            catch (Exception)
             {
                 return new StatusCodeResult((int)HttpStatusCode.InternalServerError);
             }
