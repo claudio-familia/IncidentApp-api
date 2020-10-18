@@ -1,17 +1,35 @@
 ﻿using IncidentApp.Controllers.Base.Contracts;
 using IncidentApp.Services.Contracts;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Security.Claims;
 
 namespace IncidentApp.Controllers.Base
 {
-    public class BaseController<T> : ControllerBase, IBaseController<T> where T : class
+    public class BaseController<T, Dto> : ControllerBase, IBaseController<T, Dto> where T : class where Dto : class
     {
-        private readonly IBaseService<T> baseService;
-        public BaseController(IBaseService<T> _baseService)
+        private readonly IBaseService<T, Dto> baseService;
+        public BaseController(IBaseService<T, Dto> _baseService)
         {
             baseService = _baseService;
-        }        
+        }
+
+        private int _CurrentUserId;
+        protected int CurrentUserId
+        {
+            get
+            {
+                if (_CurrentUserId == 0)
+                {
+                    var context = (IHttpContextAccessor)this.HttpContext.RequestServices.GetService(typeof(IHttpContextAccessor));
+
+                    _CurrentUserId = int.Parse(context.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+                }
+
+                return _CurrentUserId;
+            }
+        }
 
         [HttpGet]
         public IActionResult Get()
@@ -34,6 +52,9 @@ namespace IncidentApp.Controllers.Base
             try
             {
                 var response = baseService.Get(id);
+
+                if (response == null) return NotFound();
+
                 return Ok(response);
             }
             catch (Exception ex)
@@ -43,7 +64,7 @@ namespace IncidentApp.Controllers.Base
         }
 
         [HttpPost]
-        public IActionResult Post(T entity)
+        public IActionResult Post(Dto entity)
         {
             try
             {
@@ -57,11 +78,14 @@ namespace IncidentApp.Controllers.Base
         }
 
         [HttpPut]
-        public IActionResult Put(T entity)
+        public IActionResult Put(Dto entity)
         {
             try
             {
                 var response = baseService.Update(entity);
+
+                if (response == null) return NotFound();
+
                 return Ok(response);
             }
             catch (Exception ex)
@@ -75,6 +99,9 @@ namespace IncidentApp.Controllers.Base
             try
             {
                 var response = baseService.Delete(id);
+
+                if (response == null) return NotFound();
+
                 return Ok(response);
             }
             catch (Exception ex)

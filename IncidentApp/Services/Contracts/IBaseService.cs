@@ -4,10 +4,10 @@ using System.Linq.Expressions;
 
 namespace IncidentApp.Services.Contracts
 {
-    public interface IBaseService<T> where T : class
+    public interface IBaseService<T, Dto> where T : class where Dto : class
     {
-        T Add(T entity);
-        T Update(T entity);
+        T Add(Dto entity);
+        T Update(Dto entity);
         T Delete(int id);
         T Get(int id);
         IEnumerable<T> GetAll();
