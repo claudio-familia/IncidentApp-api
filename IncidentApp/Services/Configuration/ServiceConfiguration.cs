@@ -22,6 +22,7 @@ namespace IncidentApp.Services.Configuration
             services.AddScoped<IBaseService<IncidentHistory, IncidentHistoryDto>, IncidentHistoryService>();
             services.AddScoped<IBaseService<SLA, SLADto>, SLAService>();
             services.AddScoped<IBaseService<Priority, PriorityDto>, PriorityService>();
+            services.AddScoped<IAuthService, AuthService>();
         }
     }
 }

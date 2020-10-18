@@ -17,17 +17,24 @@ namespace IncidentApp.Services
     {
         private readonly IBaseRepository<User> baseRepository;
         private readonly IMapper mapper;
+        private readonly IAuthService authService;
         public int UserId { get; set; }
-        public UserService(IBaseRepository<User> _baseRepository, IMapper _mapper, IHttpContextAccessor httpContextAccessor)
+        public UserService(IBaseRepository<User> _baseRepository, 
+                           IMapper _mapper, 
+                           IHttpContextAccessor httpContextAccessor,
+                           IAuthService _authService)
         {
             baseRepository = _baseRepository;
             mapper = _mapper;
+            authService = _authService;
             UserId = int.Parse(httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier) ?? "0");
         }
 
         public User Add(UserDto entity)
         {
             User newUser = mapper.Map<User>(entity);
+
+            newUser.Password = authService.Encrypt(entity.Password);
 
             newUser.CreatedAt = DateTime.Now;
             newUser.CreatedBy = UserId;

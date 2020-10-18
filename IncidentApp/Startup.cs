@@ -41,7 +41,7 @@ namespace IncidentApp
             services.AddServices();
             services.AddApiControllers();
 
-            var key = Encoding.ASCII.GetBytes(configuration["SecretKey"]);
+            var key = Encoding.ASCII.GetBytes(configuration["Authentication:SecretKey"]);
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

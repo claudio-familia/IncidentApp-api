@@ -4,14 +4,16 @@ using IncidentApp.Models.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace IncidentApp.Migrations
 {
     [DbContext(typeof(IncidentContext))]
-    partial class IncidentContextModelSnapshot : ModelSnapshot
+    [Migration("20201018155832_removePasswordLengthLimitAndSeedAdminUser")]
+    partial class removePasswordLengthLimitAndSeedAdminUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -560,10 +562,10 @@ namespace IncidentApp.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = 0,
                             IsDeleted = false,
-                            Password = "ylwYeR9FMHE=",
+                            Password = "OjmVqA/K4ro=",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdatedBy = 0,
-                            Username = "Administrator"
+                            Username = "Admin"
                         });
                 });
 

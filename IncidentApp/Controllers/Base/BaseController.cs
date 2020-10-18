@@ -6,7 +6,7 @@ using System;
 using System.Security.Claims;
 
 namespace IncidentApp.Controllers.Base
-{
+{    
     public class BaseController<T, Dto> : ControllerBase, IBaseController<T, Dto> where T : class where Dto : class
     {
         private readonly IBaseService<T, Dto> baseService;
