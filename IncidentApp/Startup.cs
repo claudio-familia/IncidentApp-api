@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IncidentApp.Controllers.Configuration;
 using IncidentApp.Models.Context;
+using IncidentApp.Repository.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -26,6 +28,8 @@ namespace IncidentApp
         public void ConfigureServices(IServiceCollection services)
         {            
             services.AddDbContext<IncidentContext>(options => options.UseSqlServer(configuration["ConnectionStrings:DbIncidents"]));
+            services.AddRepositories();
+            services.AddApiControllers();
             services.AddControllers();
         }
 

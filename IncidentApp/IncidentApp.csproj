@@ -19,8 +19,4 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.8" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Profiles\" />
-  </ItemGroup>
-
 </Project>
