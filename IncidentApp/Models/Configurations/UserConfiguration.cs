@@ -17,7 +17,7 @@ namespace IncidentApp.Models.Configurations
 
             builder.Property(x => x.Id).HasColumnName("EmpleadoId");
             builder.Property(x => x.Username).HasColumnName("NombreUsuario").IsRequired();
-            builder.Property(x => x.Password).HasColumnName("Contrasena").HasMaxLength(100).IsRequired();
+            builder.Property(x => x.Password).HasColumnName("Contrasena").IsRequired();
 
             builder.Property(x => x.Status).HasColumnName("Estatus").HasMaxLength(2);
             builder.Property(x => x.IsDeleted).HasColumnName("Borrado");
