@@ -7,7 +7,7 @@ export const environment = {
 };
 
 export const config: any = {
-	ApiUrl: 'http://10.228.220.68:8092/api'
+	ApiUrl: 'http://localhost:5000/api'
 };
 
 /*

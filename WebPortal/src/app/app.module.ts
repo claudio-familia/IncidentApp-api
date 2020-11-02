@@ -7,6 +7,9 @@ import { HomeComponent } from './components/home/home.component';
 import { CoreModule } from './core/core.module';
 import { LoginComponent } from './components/auth/login.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthService } from './services/auth.service';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,9 +25,11 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
