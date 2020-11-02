@@ -1,4 +1,5 @@
 ﻿using IncidentApp.Models.Configurations;
+using IncidentApp.Models.Enums;
 using IncidentApp.Services.Contracts;
 using IncidentApp.Utils;
 using Microsoft.EntityFrameworkCore;
@@ -37,7 +38,8 @@ namespace IncidentApp.Models.Context
                 {
                     Id = 1,
                     Username = "Administrator",
-                    Password = cryptography.Encrypt("1234", configuration["Authentication:SecretKey"])
+                    Password = cryptography.Encrypt("1234", configuration["Authentication:SecretKey"]),
+                    Status = StatusEnum.Active.ToString()
                 });
             });
         }
