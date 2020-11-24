@@ -77,8 +77,7 @@ namespace IncidentApp
                .AllowAnyOrigin()
                .AllowAnyMethod()
                .AllowAnyHeader());
-
-            app.UseAuthentication();
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
