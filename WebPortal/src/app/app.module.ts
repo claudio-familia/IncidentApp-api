@@ -10,12 +10,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AlertService } from './services/alert.service';
+import { ToastrModule } from 'ngx-toastr';
+import { IncidentComponent } from './components/incident/incident.component';
+import { IncidentHistoryComponent } from './components/incident-history/incident-history.component';
+import { DepartmentsComponent } from './components/departments/departments.component';
+import { PositionComponent } from './components/position/position.component';
+import { EmployeeComponent } from './components/employee/employee.component';
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    IncidentComponent,
+    IncidentHistoryComponent,
+    DepartmentsComponent,
+    PositionComponent,
+    EmployeeComponent,
+    UserComponent
   ],
   entryComponents:[
     HomeComponent,
@@ -27,9 +41,14 @@ import { HttpClientModule } from '@angular/common/http';
     CoreModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot({
+      progressBar: true,
+      progressAnimation: 'increasing',
+      enableHtml: true
+    })
   ],
-  providers: [AuthService],
+  providers: [AuthService, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

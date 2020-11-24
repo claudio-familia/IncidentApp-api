@@ -1,33 +1,31 @@
-<app-auth-layout>
-    <div class="row">
-        <div class="col-sm-6 col-sm-offset-3">
-            <mat-card class="login-card">
-                <mat-card-header>
-                    <mat-card-title>Login</mat-card-title>
-                    <mat-card-subtitle>Incident App</mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content class="main">
-                    <p>
-                        <mat-form-field class="w-100">
-                            <mat-label>Username</mat-label>
-                            <input matInput [(ngModel)]="username" placeholder="Type your username">
-                            <mat-icon matSuffix>perm_identity</mat-icon>
-                        </mat-form-field>
-                    </p>
-                    <p>
-                        <mat-form-field class="w-100">
-                            <mat-label>Password</mat-label>
-                            <input matInput [(ngModel)]="password" [type]="hidePassword ? 'password' : 'text'" placeholder="Type your password">
-                            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <mat-card class="login-card">
+            <mat-card-header>
+                <mat-card-title>Login</mat-card-title>
+                <mat-card-subtitle>Incident App</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content class="main">
+                <p>
+                    <mat-form-field class="w-100">
+                        <mat-label>Username</mat-label>
+                        <input matInput [(ngModel)]="username" placeholder="Type your username">
+                        <mat-icon matSuffix>perm_identity</mat-icon>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field class="w-100">
+                        <mat-label>Password</mat-label>
+                        <input matInput [(ngModel)]="password" [type]="hidePassword ? 'password' : 'text'" placeholder="Type your password">
+                        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                             <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
                             </button>
-                        </mat-form-field>
-                    </p>
-                </mat-card-content>
-                <mat-card-actions class="text-center">
-                    <button mat-raised-button color="primary" (click)="login()" class="btn-login">Login</button>
-                </mat-card-actions>
-            </mat-card>
-        </div>
+                    </mat-form-field>
+                </p>
+            </mat-card-content>
+            <mat-card-actions class="text-center">
+                <button mat-raised-button color="primary" (click)="login()" class="btn-login">Login</button>
+            </mat-card-actions>
+        </mat-card>
     </div>
-</app-auth-layout>
+</div>

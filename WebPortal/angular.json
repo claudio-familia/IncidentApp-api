@@ -26,9 +26,14 @@
                         "styles": [
                             "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
                             "src/styles.css",
-                            "src/assets/css/materialize.min.css"
+                            "src/assets/css/materialize.min.css",
+                            "node_modules/ngx-toastr/toastr.css",
+                            "src/assets/css/fontawesome.min.css"
                         ],
-                        "scripts": []
+                        "scripts": [
+                            "src/assets/js/jquery-3.5.1.min.js",
+                            "src/assets/js/bootstrap.min.js"
+                        ]
                     },
                     "configurations": {
                         "production": {
