@@ -18,6 +18,9 @@ import { DepartmentsComponent } from './components/departments/departments.compo
 import { PositionComponent } from './components/position/position.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { UserComponent } from './components/user/user.component';
+import { DynamicformComponent } from './components/shared/dynamicform/dynamicform.component';
+import { ModalComponent } from './components/shared/modal/modal.component';
+import { DynamictableComponent } from './components/shared/dynamictable/dynamictable.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { UserComponent } from './components/user/user.component';
     DepartmentsComponent,
     PositionComponent,
     EmployeeComponent,
-    UserComponent
+    UserComponent,
+    DynamicformComponent,
+    ModalComponent,
+    DynamictableComponent
   ],
   entryComponents:[
     HomeComponent,

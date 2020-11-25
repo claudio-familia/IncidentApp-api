@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-12" *ngFor="let item of form">
+        <div class="form-group">
+            <label [for]="item.name">{{item.label}}</label>
+            <input [type]="item.type" class="form-control" [(ngModel)]="item.value" [ngClass]="(item.class != undefined) ? item.class : ''" [name]="item.name" [id]="item.name" [placeholder]="item.placeholder ? item.placeholder : ''" [value]="item.value ? item.value : ''"
+                [attr.disabled]="item.isDisabled ? '' : null" [required]="item.isRequired">
+            <div class="invalid-feedback" *ngIf="item.hasError">
+                {{ validationMessage ? validationMessage : 'Campo requerido *' }}.
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="pull-right mt-3">
+            <button class="btn btn-primary mr-2" type="button" (click)="save()">Guardar</button>
+            <button class="btn btn-secondary" type="button" id="btn-cancel-modal" (click)="cancel()">Cancelar</button>
+        </div>
+    </div>
+</div>

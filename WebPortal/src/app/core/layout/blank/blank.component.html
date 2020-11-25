@@ -1,5 +1,7 @@
-<div class="container">
+<div class="container page-container">
     <app-header [drawer]="drawer"></app-header>
-    <ng-content></ng-content>
+    <div id="content-wrap">
+        <ng-content></ng-content>
+    </div>
     <app-footer></app-footer>
 </div>

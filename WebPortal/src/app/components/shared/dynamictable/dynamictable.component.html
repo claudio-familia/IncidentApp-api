@@ -1,0 +1,14 @@
+<div class="table-responsive">
+    <table class="table table-hover table-stripped">
+        <thead>
+            <tr class="bg-dark text-white theaders">
+                <td *ngFor="let header of Header">{{header}}</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of BodyData">
+                <td *ngFor="let valueName of BodyValueName">{{data[valueName]}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

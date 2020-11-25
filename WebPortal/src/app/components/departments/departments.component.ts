@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Deparment } from 'src/app/models/deparment.model';
+import { DynamicForm } from 'src/app/models/dynamic-form.model';
+import { DeparmentService } from 'src/app/services/deparment.service';
 
 @Component({
   selector: 'app-departments',
@@ -7,9 +10,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DepartmentsComponent implements OnInit {
 
-  constructor() { }
+  deparmentForm: DynamicForm[]
+  departments: Deparment[] = [];
+  tableHeader: string[] = [];
+  tableProperties: string[] = [];
 
-  ngOnInit() {
+  constructor(private deparmentService: DeparmentService) {
+    this.tableHeader.push('#');
+    this.tableHeader.push('Departamento');
+    this.tableProperties.push('id');
+    this.tableProperties.push('name');
+    
+    this.deparmentForm = [
+      <DynamicForm>{
+        name: 'name',
+        isRequired: true,
+        label: 'Departamento',
+        placeholder: 'Digite el nombre del departamento',
+        type: 'text',
+        value: ''
+      }     
+    ];
   }
 
+  ngOnInit() {
+     this.deparmentService.get().subscribe(
+      res => {
+        this.departments = res
+      }
+    )
+  }
+
+  save(data:any){
+    console.log(data)
+  }
 }

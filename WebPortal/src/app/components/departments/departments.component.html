@@ -1,1 +1,25 @@
-<p>departments works!</p>
+<div class="row">
+    <div class="col-12">
+        <div class="card border-dark mt-3">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-6">
+                        <h5 class="mt-1">Departamentos</h5>
+                    </div>
+                    <div class="col-6">
+                        <div class="pull-right">
+                            <button class="btn btn-dark" data-toggle="modal" data-target="#componentModal" type="button">Nuevo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Listado de departamentos</h5>
+                <app-dynamictable [Header]="tableHeader" [BodyValueName]="tableProperties" [BodyData]="departments"></app-dynamictable>
+            </div>
+        </div>
+    </div>
+</div>
+<app-modal [title]="'Nuevo departamento'">
+    <app-dynamicform [form]="deparmentForm" (onSave)="save($event)"></app-dynamicform>
+</app-modal>
