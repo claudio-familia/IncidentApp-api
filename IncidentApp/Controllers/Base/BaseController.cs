@@ -94,6 +94,8 @@ namespace IncidentApp.Controllers.Base
             }
         }
 
+        [HttpDelete]
+        [Route("{id}")]
         public IActionResult Delete(int id)
         {
             try

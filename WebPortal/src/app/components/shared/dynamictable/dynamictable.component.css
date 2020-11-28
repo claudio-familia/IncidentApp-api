@@ -1,3 +1,9 @@
 .theaders {
     font-weight: 550;
 }
+
+.table-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+}

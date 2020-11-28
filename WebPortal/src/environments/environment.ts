@@ -10,6 +10,18 @@ export const config: any = {
 	ApiUrl: 'http://localhost:5000/api'
 };
 
+export class AppSettings {
+  getModalBasicConf(): any {
+    return {
+      size: 'lg',
+      backdrop: 'static',
+      keyboard: false,
+      windowClass: 'animated slideInDown',
+      centered: true,
+    };
+  }
+}
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

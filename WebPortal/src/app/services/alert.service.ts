@@ -11,6 +11,17 @@ export class AlertService {
   }
 
   ModalNotification(title:string, text:string, type:SweetAlertIcon) {
+    if(type == 'question'){
+      return Swal.fire({
+        title: title,
+        text: text,
+        icon: type,
+        showCancelButton: true,
+        focusConfirm: false,
+        cancelButtonText: 'No, no borrar',
+        confirmButtonText: 'Si, estoy seguro!'
+      });  
+    }
     return Swal.fire(title, text, type);
   }
 

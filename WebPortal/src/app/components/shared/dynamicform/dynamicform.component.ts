@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DynamicForm } from 'src/app/models/dynamic-form.model';
 
 @Component({
@@ -9,14 +10,20 @@ import { DynamicForm } from 'src/app/models/dynamic-form.model';
 export class DynamicformComponent implements OnInit {
   @Input() form: DynamicForm[]
   @Output() onSave: EventEmitter<any> = new EventEmitter<any>()
-  constructor() { }
+  constructor(private _modalService: NgbModal) { }
 
   ngOnInit() {
   }
 
   save(){
-    const response = [];    
-    this.form.map(item => {      
+    const formCapture = [];
+    for(let item of this.form){
+      formCapture.push({...item})
+    }
+    this.cancel();
+    const response = [];
+
+    formCapture.map(item => {      
       response.push({
         'field': item.name, 
         'value': item.value
@@ -24,12 +31,13 @@ export class DynamicformComponent implements OnInit {
     });
     
     this.onSave.emit(response);
-  }
+  }  
 
-  cancel(fun: any){
+  cancel(){
     this.form.map(item => {
       item.value = ''
     });
+    this._modalService.dismissAll()
   }
 
 }

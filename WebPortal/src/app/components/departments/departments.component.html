@@ -8,18 +8,14 @@
                     </div>
                     <div class="col-6">
                         <div class="pull-right">
-                            <button class="btn btn-dark" data-toggle="modal" data-target="#componentModal" type="button">Nuevo</button>
+                            <button class="btn btn-dark" (click)="newEntry()" type="button">Nuevo</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="card-body">
-                <h5 class="card-title">Listado de departamentos</h5>
-                <app-dynamictable [Header]="tableHeader" [BodyValueName]="tableProperties" [BodyData]="departments"></app-dynamictable>
+                <app-dynamictable [displayedColumns]="tableHeader" [nameColumns]="tableColumn" [datatable]="departments" [hasOptions]="true" (element)="editDelete($event)"></app-dynamictable>
             </div>
         </div>
     </div>
 </div>
-<app-modal [title]="'Nuevo departamento'">
-    <app-dynamicform [form]="deparmentForm" (onSave)="save($event)"></app-dynamicform>
-</app-modal>

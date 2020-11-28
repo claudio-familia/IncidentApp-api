@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-modal',
@@ -6,8 +7,12 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit {
-  @Input() title:string
-  constructor() { }
+  @Input() title:string  
+  constructor(private _activeModal: NgbActiveModal) { }
+
+  closeModal(){
+    this._activeModal.close();
+  }
 
   ngOnInit() {
   }

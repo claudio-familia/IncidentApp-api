@@ -19,8 +19,11 @@ import { PositionComponent } from './components/position/position.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { UserComponent } from './components/user/user.component';
 import { DynamicformComponent } from './components/shared/dynamicform/dynamicform.component';
-import { ModalComponent } from './components/shared/modal/modal.component';
 import { DynamictableComponent } from './components/shared/dynamictable/dynamictable.component';
+import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { DepartmentFormComponent } from './components/departments/form/deparment.form.component';
+import { ModalComponent } from './components/shared/modal/modal.component';
+import { MaterialModule } from './core/material/material.module';
 
 @NgModule({
   declarations: [
@@ -34,12 +37,14 @@ import { DynamictableComponent } from './components/shared/dynamictable/dynamict
     EmployeeComponent,
     UserComponent,
     DynamicformComponent,
-    ModalComponent,
-    DynamictableComponent
+    DynamictableComponent,
+    DepartmentFormComponent,
+    ModalComponent
   ],
   entryComponents:[
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    DepartmentFormComponent
   ],
   imports: [
     BrowserModule,
@@ -48,13 +53,19 @@ import { DynamictableComponent } from './components/shared/dynamictable/dynamict
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgbModule,
+    MaterialModule,
     ToastrModule.forRoot({
       progressBar: true,
       progressAnimation: 'increasing',
       enableHtml: true
     })
   ],
-  providers: [AuthService, AlertService],
+  exports: [
+    NgbModule,
+    MaterialModule
+  ],
+  providers: [AuthService, AlertService, NgbActiveModal],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

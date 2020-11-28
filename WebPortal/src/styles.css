@@ -30,3 +30,8 @@ footer {
     height: 2.5rem;
     /* Footer height */
 }
+
+html,
+body {
+    height: 100%;
+}

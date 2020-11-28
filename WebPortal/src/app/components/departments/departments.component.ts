@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Deparment } from 'src/app/models/deparment.model';
 import { DynamicForm } from 'src/app/models/dynamic-form.model';
+import { AlertService } from 'src/app/services/alert.service';
 import { DeparmentService } from 'src/app/services/deparment.service';
+import { AppSettings } from 'src/environments/environment';
+import { DepartmentFormComponent } from './form/deparment.form.component';
+
 
 @Component({
   selector: 'app-departments',
@@ -12,15 +17,16 @@ export class DepartmentsComponent implements OnInit {
 
   deparmentForm: DynamicForm[]
   departments: Deparment[] = [];
+  selectedDepartment: Deparment = new Deparment()
   tableHeader: string[] = [];
-  tableProperties: string[] = [];
+  tableColumn: string[] = [];
 
-  constructor(private deparmentService: DeparmentService) {
-    this.tableHeader.push('#');
-    this.tableHeader.push('Departamento');
-    this.tableProperties.push('id');
-    this.tableProperties.push('name');
+  constructor(private _deparmentService: DeparmentService, 
+              private _alertService: AlertService,
+              private _modalService: NgbModal) {
     
+    this.setColumn()
+    this.setHeaders()
     this.deparmentForm = [
       <DynamicForm>{
         name: 'name',
@@ -32,16 +38,108 @@ export class DepartmentsComponent implements OnInit {
       }     
     ];
   }
+  setColumn() {
+    this.tableColumn.push('id');
+    this.tableColumn.push('name');
+    this.tableColumn.push('createdAt');
+    this.tableColumn.push('updatedAt');
+  }
 
-  ngOnInit() {
-     this.deparmentService.get().subscribe(
+  setHeaders() {
+    this.tableHeader.push('#');
+    this.tableHeader.push('Departamento');
+    this.tableHeader.push('Fecha de creación');
+    this.tableHeader.push('Fecha de actualización');
+  }
+
+  ngOnInit() {    
+     this.getDepartments()
+  }
+
+  getDepartments(){
+    this._deparmentService.get().subscribe(
       res => {
         this.departments = res
       }
     )
   }
+  newEntry(){    
+    const modal = this._modalService.open(DepartmentFormComponent, new AppSettings().getModalBasicConf());
+    modal.componentInstance.deparmentForm = this.deparmentForm;
+    modal.componentInstance.title =  'Nuevo departamento'
+    modal.componentInstance.dataEmitter.subscribe((data)=>{
+      this.save(data)      
+    })
+  }
 
-  save(data:any){
-    console.log(data)
+  save(data:any[]){
+    for(let row of data){
+      this.selectedDepartment.id = 0 
+      if(row.field == 'name') this.selectedDepartment.name = row.value      
+    }    
+    this._deparmentService.create(this.selectedDepartment).subscribe(
+      res => {
+        this._alertService.ToasterNotification('Exitoso','Departamento creado correctamente','success')
+        this.getDepartments()
+        this._modalService.dismissAll();
+      },
+      err => {
+        this._alertService.ToasterNotification('Error','Hubo un error al crear el departamento','error');
+      }
+    )
+  }
+
+  edit(data:any[]){
+    for(let row of data){      
+      if(row.field == 'name') this.selectedDepartment.name = row.value      
+    }        
+    this._deparmentService.update(this.selectedDepartment).subscribe(
+      res => {
+        this._alertService.ToasterNotification('Exitoso','Departamento actualizado correctamente','success')
+        this.getDepartments()
+        this._modalService.dismissAll();
+      },
+      err => {
+        this._alertService.ToasterNotification('Error','Hubo un error al crear el departamento','error');
+      }
+    )
+  }
+
+  delete(){
+    this._deparmentService.delete(this.selectedDepartment.id.toString()).subscribe(
+      res => {
+        this._alertService.ToasterNotification('Exitoso','Departamento eliminado correctamente','success')
+        this.getDepartments()
+        this._modalService.dismissAll();
+      },
+      err => {
+        this._alertService.ToasterNotification('Error','Hubo un error al eliminar el departamento','error');
+      }
+    )
+  }
+
+  editDelete(department:any){
+    this.selectedDepartment = department
+
+    if(department.typeAction == 'edit'){
+      const modal = this._modalService.open(DepartmentFormComponent, new AppSettings().getModalBasicConf());
+      this.deparmentForm.map(item => {        
+        if(item.name == 'name'){
+          item.value = department.name
+        }
+      })  
+      modal.componentInstance.deparmentForm = this.deparmentForm;
+      modal.componentInstance.title =  'Editar departamento'
+      modal.componentInstance.dataEmitter.subscribe((data)=>{
+        this.edit(data)      
+      })          
+    }else{
+      this._alertService.ModalNotification('Aviso','¿Esta seguro que desea borrar este departamento?','question')
+          .then(res => {
+            if(res.isConfirmed){
+              this.delete()
+            }
+          })      
+    }
   }
 }

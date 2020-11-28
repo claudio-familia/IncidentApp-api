@@ -21,14 +21,18 @@ export class BaseService<T> {
   }
 
   getById(id:string):Observable<T>{
-    return this.http.get<T>(`${this._apiUrl}/id`, {headers: this._headers});
+    return this.http.get<T>(`${this._apiUrl}/${id}`, {headers: this._headers});
   }
 
-  create(data: any){
+  create(data: any){    
     return this.http.post(this._apiUrl, data,{headers: this._headers});
   }
 
   update(data: any){
     return this.http.put(this._apiUrl, data,{headers: this._headers});
+  }
+  
+  delete(id: string){
+    return this.http.delete(`${this._apiUrl}/${id}`, {headers: this._headers});
   }
 }
