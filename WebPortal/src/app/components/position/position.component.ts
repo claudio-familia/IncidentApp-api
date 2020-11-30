@@ -5,11 +5,11 @@ import { DynamicForm } from '../../models/dynamic-form.model';
 import { Position } from '../../models/position.model';
 import { AlertService } from '../../services/alert.service';
 import { AppSettings } from 'src/environments/environment';
-import { PositionFormComponent } from './form/position.form.component';
 import { Deparment } from 'src/app/models/deparment.model';
 import { DeparmentService } from 'src/app/services/deparment.service';
 import { BaseComponent } from '../shared/base/base.component';
 import { Router } from '@angular/router';
+import { BaseFormComponent } from '../shared/base/form.component';
 
 @Component({
   selector: 'app-position',
@@ -102,8 +102,8 @@ export class PositionComponent extends BaseComponent implements OnInit {
   }
 
   newEntry() {
-     const modal = this._modalService.open(PositionFormComponent, new AppSettings().getModalBasicConf());
-     modal.componentInstance.positionForm = this.positionForm;
+     const modal = this._modalService.open(BaseFormComponent, new AppSettings().getModalBasicConf());
+     modal.componentInstance.form = this.positionForm;
      modal.componentInstance.title =  'Nueva posición'
      modal.componentInstance.dataEmitter.subscribe((data)=>{
        this.save(data)
@@ -134,7 +134,7 @@ export class PositionComponent extends BaseComponent implements OnInit {
     this.selectedPosition = position
 
     if(position.typeAction == 'edit'){
-      const modal = this._modalService.open(PositionFormComponent, new AppSettings().getModalBasicConf());
+      const modal = this._modalService.open(BaseFormComponent, new AppSettings().getModalBasicConf());
       this.positionForm.map(item => {        
         if(item.name == 'name'){
           item.value = position.name
@@ -143,7 +143,7 @@ export class PositionComponent extends BaseComponent implements OnInit {
           item.value = position.departmentId
         }        
       })  
-      modal.componentInstance.positionForm = this.positionForm;
+      modal.componentInstance.form = this.positionForm;
       modal.componentInstance.title =  'Editar Posición'
       modal.componentInstance.dataEmitter.subscribe((data)=>{
         this.edit(data)      

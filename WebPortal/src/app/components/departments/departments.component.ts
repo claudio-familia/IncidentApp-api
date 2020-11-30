@@ -6,7 +6,7 @@ import { AlertService } from 'src/app/services/alert.service';
 import { DeparmentService } from 'src/app/services/deparment.service';
 import { AppSettings } from 'src/environments/environment';
 import { BaseComponent } from '../shared/base/base.component';
-import { DepartmentFormComponent } from './form/deparment.form.component';
+import { BaseFormComponent } from '../shared/base/form.component';
 
 
 @Component({
@@ -66,8 +66,8 @@ export class DepartmentsComponent extends BaseComponent implements OnInit {
     )
   }
   newEntry(){    
-    const modal = this._modalService.open(DepartmentFormComponent, new AppSettings().getModalBasicConf());
-    modal.componentInstance.deparmentForm = this.deparmentForm;
+    const modal = this._modalService.open(BaseFormComponent, new AppSettings().getModalBasicConf());
+    modal.componentInstance.form = this.deparmentForm;
     modal.componentInstance.title =  'Nuevo departamento'
     modal.componentInstance.dataEmitter.subscribe((data)=>{
       this.save(data)      
@@ -124,13 +124,13 @@ export class DepartmentsComponent extends BaseComponent implements OnInit {
     this.selectedDepartment = department
 
     if(department.typeAction == 'edit'){
-      const modal = this._modalService.open(DepartmentFormComponent, new AppSettings().getModalBasicConf());
+      const modal = this._modalService.open(BaseFormComponent, new AppSettings().getModalBasicConf());
       this.deparmentForm.map(item => {        
         if(item.name == 'name'){
           item.value = department.name
         }
       })  
-      modal.componentInstance.deparmentForm = this.deparmentForm;
+      modal.componentInstance.form = this.deparmentForm;
       modal.componentInstance.title =  'Editar departamento'
       modal.componentInstance.dataEmitter.subscribe((data)=>{
         this.edit(data)      

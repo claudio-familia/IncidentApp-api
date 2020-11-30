@@ -21,11 +21,10 @@ import { UserComponent } from './components/user/user.component';
 import { DynamicformComponent } from './components/shared/dynamicform/dynamicform.component';
 import { DynamictableComponent } from './components/shared/dynamictable/dynamictable.component';
 import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { DepartmentFormComponent } from './components/departments/form/deparment.form.component';
 import { ModalComponent } from './components/shared/modal/modal.component';
 import { MaterialModule } from './core/material/material.module';
-import { PositionFormComponent } from './components/position/form/position.form.component';
 import { MatSelectFilterModule } from 'mat-select-filter';
+import { BaseFormComponent } from './components/shared/base/form.component';
 
 
 @NgModule({
@@ -41,15 +40,13 @@ import { MatSelectFilterModule } from 'mat-select-filter';
     UserComponent,
     DynamicformComponent,
     DynamictableComponent,
-    DepartmentFormComponent,
-    PositionFormComponent,
+    BaseFormComponent,
     ModalComponent
   ],
   entryComponents:[
     HomeComponent,
     LoginComponent,
-    DepartmentFormComponent,
-    PositionFormComponent
+    BaseFormComponent
   ],
   imports: [
     BrowserModule,

@@ -12,7 +12,7 @@ export class DynamicformComponent implements OnInit {
   @Output() onSave: EventEmitter<any> = new EventEmitter<any>()
   constructor(private _modalService: NgbModal) { }
 
-  ngOnInit() {
+  ngOnInit() {    
   }
 
   save(){
