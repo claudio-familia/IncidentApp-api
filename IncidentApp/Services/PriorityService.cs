@@ -4,6 +4,7 @@ using IncidentApp.Models.Dtos;
 using IncidentApp.Repository.Base.Contracts;
 using IncidentApp.Services.Contracts;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,7 +67,7 @@ namespace IncidentApp.Services
 
         public IEnumerable<Priority> GetAll()
         {
-            return baseRepository.Read().Where(x => !x.IsDeleted).ToList();
+            return baseRepository.TableInstance().Include(prio => prio.SLA).Where(x => !x.IsDeleted).ToList();
         }
 
         public Priority Update(PriorityDto entity)
