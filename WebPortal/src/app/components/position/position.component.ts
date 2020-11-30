@@ -28,11 +28,10 @@ export class PositionComponent extends BaseComponent implements OnInit {
   constructor(private _positionService: PositionService,
     private _alertService: AlertService,
     private _modalService: NgbModal,
-    private _deparmentService: DeparmentService,
-    private _router: Router) {
-      super(_alertService)
+    private _deparmentService: DeparmentService) {
+    super(_alertService)
     this.setColumn()
-    this.setHeaders()    
+    this.setHeaders()
   }
 
   setColumn() {
@@ -57,7 +56,7 @@ export class PositionComponent extends BaseComponent implements OnInit {
     this.setForm();
   }
 
-  setForm(){
+  setForm() {
     this.positionForm = [
       <DynamicForm>{
         name: 'name',
@@ -89,36 +88,36 @@ export class PositionComponent extends BaseComponent implements OnInit {
     )
   }
 
-  async getDepartments(){
+  async getDepartments() {
     await this._deparmentService.get().toPromise()
-        .then(
-          res => {
-            this.departments = res
-          }
-        )
-        .catch(err => {
-          this.getHttpErrorResponse(err)
-        })
+      .then(
+        res => {
+          this.departments = res
+        }
+      )
+      .catch(err => {
+        this.getHttpErrorResponse(err)
+      })
   }
 
   newEntry() {
-     const modal = this._modalService.open(BaseFormComponent, new AppSettings().getModalBasicConf());
-     modal.componentInstance.form = this.positionForm;
-     modal.componentInstance.title =  'Nueva posición'
-     modal.componentInstance.dataEmitter.subscribe((data)=>{
-       this.save(data)
-     })
+    const modal = this._modalService.open(BaseFormComponent, new AppSettings().getModalBasicConf());
+    modal.componentInstance.form = this.positionForm;
+    modal.componentInstance.title = 'Nueva posición'
+    modal.componentInstance.dataEmitter.subscribe((data) => {
+      this.save(data)
+    })
   }
 
-  save(data:any[]){
-    for(let row of data){
-      this.selectedPosition.id = 0 
-      if(row.field == 'name') this.selectedPosition.name = row.value
-      if(row.field == 'departmentId') this.selectedPosition.departmentId = row.value    
-    }    
+  save(data: any[]) {
+    for (let row of data) {
+      this.selectedPosition.id = 0
+      if (row.field == 'name') this.selectedPosition.name = row.value
+      if (row.field == 'departmentId') this.selectedPosition.departmentId = row.value
+    }
     this._positionService.create(this.selectedPosition).subscribe(
       res => {
-        this._alertService.ToasterNotification('Exitoso','Posición creado correctamente','success')
+        this._alertService.ToasterNotification('Exitoso', 'Posición creado correctamente', 'success')
         this.getPositions()
         this._modalService.dismissAll();
       },
@@ -129,45 +128,45 @@ export class PositionComponent extends BaseComponent implements OnInit {
   }
 
   editDelete(position: any) {
-    const department = {...position.department}
+    const department = { ...position.department }
     position.department = null;
     this.selectedPosition = position
 
-    if(position.typeAction == 'edit'){
+    if (position.typeAction == 'edit') {
       const modal = this._modalService.open(BaseFormComponent, new AppSettings().getModalBasicConf());
-      this.positionForm.map(item => {        
-        if(item.name == 'name'){
+      this.positionForm.map(item => {
+        if (item.name == 'name') {
           item.value = position.name
         }
-        if(item.name == 'departmentId'){
+        if (item.name == 'departmentId') {
           item.value = position.departmentId
-        }        
-      })  
+        }
+      })
       modal.componentInstance.form = this.positionForm;
-      modal.componentInstance.title =  'Editar Posición'
-      modal.componentInstance.dataEmitter.subscribe((data)=>{
-        this.edit(data)      
-      })          
-    }else{
-      this._alertService.ModalNotification('Aviso','¿Esta seguro que desea borrar esta posición?','question')
-          .then(res => {
-            if(res.isConfirmed){
-              this.delete()
-            }else{
-              this.selectedPosition.department = department;
-            }
-          })      
+      modal.componentInstance.title = 'Editar Posición'
+      modal.componentInstance.dataEmitter.subscribe((data) => {
+        this.edit(data)
+      })
+    } else {
+      this._alertService.ModalNotification('Aviso', '¿Esta seguro que desea borrar esta posición?', 'question')
+        .then(res => {
+          if (res.isConfirmed) {
+            this.delete()
+          } else {
+            this.selectedPosition.department = department;
+          }
+        })
     }
   }
 
-  edit(data:any[]){    
-    for(let row of data){      
-      if(row.field == 'name') this.selectedPosition.name = row.value;
-      if(row.field == 'departmentId') this.selectedPosition.departmentId = row.value;
-    }        
+  edit(data: any[]) {
+    for (let row of data) {
+      if (row.field == 'name') this.selectedPosition.name = row.value;
+      if (row.field == 'departmentId') this.selectedPosition.departmentId = row.value;
+    }
     this._positionService.update(this.selectedPosition).subscribe(
       res => {
-        this._alertService.ToasterNotification('Exitoso','Posición actualizada correctamente','success')
+        this._alertService.ToasterNotification('Exitoso', 'Posición actualizada correctamente', 'success')
         this.getPositions()
         this._modalService.dismissAll();
       },
@@ -177,10 +176,10 @@ export class PositionComponent extends BaseComponent implements OnInit {
     )
   }
 
-  delete(){
+  delete() {
     this._positionService.delete(this.selectedPosition.id.toString()).subscribe(
       res => {
-        this._alertService.ToasterNotification('Exitoso','Posición eliminada correctamente','success')
+        this._alertService.ToasterNotification('Exitoso', 'Posición eliminada correctamente', 'success')
         this.getPositions()
         this._modalService.dismissAll();
       },
@@ -189,6 +188,4 @@ export class PositionComponent extends BaseComponent implements OnInit {
       }
     )
   }
-
-
 }

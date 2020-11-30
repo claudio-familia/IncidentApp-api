@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-12" *ngFor="let item of form">
-        <div class="form-group" *ngIf="item.type == 'text' || item.type == 'number' || item.type == 'password'">
+        <div class="form-group" *ngIf="item.type == 'text' || item.type == 'number' || item.type == 'password' || item.type == 'date' || item.type == 'email'">
             <label [for]="item.name">{{item.label}}</label>
             <input [type]="item.type" class="form-control" [(ngModel)]="item.value" [ngClass]="(item.class != undefined) ? item.class : ''" [name]="item.name" [id]="item.name" [placeholder]="item.placeholder ? item.placeholder : ''" [value]="item.value ? item.value : ''"
                 [attr.disabled]="item.isDisabled ? '' : null" [required]="item.isRequired">
