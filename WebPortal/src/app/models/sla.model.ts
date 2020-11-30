@@ -1,4 +1,5 @@
 export class SLA {
     id: number;
-    name: string
+    description: string
+    hours: number
 }

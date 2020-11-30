@@ -25,6 +25,8 @@ import { ModalComponent } from './components/shared/modal/modal.component';
 import { MaterialModule } from './core/material/material.module';
 import { MatSelectFilterModule } from 'mat-select-filter';
 import { BaseFormComponent } from './components/shared/base/form.component';
+import { SlaComponent } from './components/sla/sla.component';
+import { PriorityComponent } from './components/priority/priority.component';
 
 
 @NgModule({
@@ -41,7 +43,9 @@ import { BaseFormComponent } from './components/shared/base/form.component';
     DynamicformComponent,
     DynamictableComponent,
     BaseFormComponent,
-    ModalComponent
+    ModalComponent,
+    SlaComponent,
+    PriorityComponent
   ],
   entryComponents:[
     HomeComponent,

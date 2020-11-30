@@ -6,6 +6,8 @@ import { HomeComponent } from '../components/home/home.component';
 import { IncidentHistoryComponent } from '../components/incident-history/incident-history.component';
 import { IncidentComponent } from '../components/incident/incident.component';
 import { PositionComponent } from '../components/position/position.component';
+import { PriorityComponent } from '../components/priority/priority.component';
+import { SlaComponent } from '../components/sla/sla.component';
 import { UserComponent } from '../components/user/user.component';
 
 export const routes: Routes = [
@@ -36,6 +38,14 @@ export const routes: Routes = [
 	{
 		path: 'users',
         component: UserComponent,
+    },
+	{
+		path: 'slas',
+        component: SlaComponent,
+    },
+	{
+		path: 'priorities',
+        component: PriorityComponent,
     },
     {
 		path: 'login',
