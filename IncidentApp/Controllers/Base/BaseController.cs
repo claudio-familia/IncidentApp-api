@@ -32,7 +32,7 @@ namespace IncidentApp.Controllers.Base
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public virtual IActionResult Get()
         {
             try
             {
@@ -47,7 +47,7 @@ namespace IncidentApp.Controllers.Base
 
         [HttpGet]
         [Route("{id}")]
-        public IActionResult Get(int id)
+        public virtual IActionResult Get(int id)
         {
             try
             {
@@ -64,7 +64,7 @@ namespace IncidentApp.Controllers.Base
         }
 
         [HttpPost]
-        public IActionResult Post(Dto entity)
+        public virtual IActionResult Post(Dto entity)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace IncidentApp.Controllers.Base
         }
 
         [HttpPut]
-        public IActionResult Put(Dto entity)
+        public virtual IActionResult Put(Dto entity)
         {
             try
             {
@@ -96,7 +96,7 @@ namespace IncidentApp.Controllers.Base
 
         [HttpDelete]
         [Route("{id}")]
-        public IActionResult Delete(int id)
+        public virtual IActionResult Delete(int id)
         {
             try
             {

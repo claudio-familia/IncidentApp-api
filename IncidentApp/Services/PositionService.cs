@@ -4,12 +4,14 @@ using IncidentApp.Models.Dtos;
 using IncidentApp.Repository.Base.Contracts;
 using IncidentApp.Services.Contracts;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Security.Claims;
 using System.Threading.Tasks;
+
 
 namespace IncidentApp.Services
 {
@@ -64,20 +66,19 @@ namespace IncidentApp.Services
 
             return null;
         }
-
         public IEnumerable<Position> GetAll()
-        {
-            return baseRepository.Read().Where(x => !x.IsDeleted).ToList();
+        {            
+            return baseRepository.TableInstance().Include(x => x.Department).Where(x => !x.IsDeleted).ToList();
         }
-
+    
         public Position Update(PositionDto entity)
         {
             Position position = baseRepository.Read(entity.Id);
-
+            
             if (position == null) return null;
-
-            position = mapper.Map<Position>(entity);
-
+            
+            position.Name = entity.Name;
+            position.DepartmentId = entity.DepartmentId;            
             position.UpdatedAt = DateTime.Now;
             position.UpdatedBy = UserId;
 

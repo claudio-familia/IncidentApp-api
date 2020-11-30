@@ -48,6 +48,11 @@ namespace IncidentApp.Repository.Base
             return db.AsEnumerable();
         }
 
+        public DbSet<T> TableInstance()
+        {
+            return db;
+        }
+
         public T Update(T entity)
         {
             db.Update(entity);

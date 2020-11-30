@@ -10,7 +10,7 @@ namespace IncidentApp.Services.Contracts
         T Update(Dto entity);
         T Delete(int id);
         T Get(int id);
-        IEnumerable<T> GetAll();
+        IEnumerable<T> GetAll();        
         IEnumerable<T> Find(Expression<Func<T, bool>> filter = null);
         bool Exists(Expression<Func<T, bool>> filter = null);
     }

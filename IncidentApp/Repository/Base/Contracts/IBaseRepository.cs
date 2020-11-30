@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -12,6 +13,7 @@ namespace IncidentApp.Repository.Base.Contracts
         T Update(T entity);
         T Read(int id);
         IEnumerable<T> Read();
+        DbSet<T> TableInstance();
         IEnumerable<T> Find(Expression<Func<T, bool>> filter = null);
         bool Exists(Expression<Func<T, bool>> filter = null);
     }

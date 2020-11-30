@@ -4,6 +4,7 @@ using IncidentApp.Models.Dtos;
 using IncidentApp.Repository.Base.Contracts;
 using IncidentApp.Services.Contracts;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,7 +68,11 @@ namespace IncidentApp.Services
 
         public IEnumerable<Employee> GetAll()
         {
-            return baseRepository.Read().Where(x => !x.IsDeleted).ToList();
+            return baseRepository.TableInstance()
+                                 .Include(x => x.Position)
+                                 .Include(x => x.User)
+                                 .Where(x => !x.IsDeleted)
+                                 .ToList();
         }
 
         public Employee Update(EmployeeDto entity)
