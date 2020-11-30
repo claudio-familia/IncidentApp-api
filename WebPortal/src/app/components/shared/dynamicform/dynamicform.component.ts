@@ -20,7 +20,7 @@ export class DynamicformComponent implements OnInit {
     for(let item of this.form){
       formCapture.push({...item})
     }
-    this.cancel();
+
     const response = [];
 
     formCapture.map(item => {      
@@ -31,6 +31,7 @@ export class DynamicformComponent implements OnInit {
     });
     
     this.onSave.emit(response);
+    this.cancel();
   }  
 
   cancel(){

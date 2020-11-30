@@ -1,6 +1,8 @@
 export class DynamicForm {
     name: string
     value: any
+    valueArray?: any[]
+    valueFiltered?: any[]
     label: string
     type: string
     placeholder: string = ''   

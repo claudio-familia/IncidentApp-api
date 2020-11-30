@@ -16,6 +16,6 @@ export class AuthService {
 
     signOut(){
         localStorage.removeItem('api-token')
-        localStorage.removeItem('app-user')        
+        localStorage.removeItem('app-user')
     }
 }

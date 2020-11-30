@@ -24,6 +24,9 @@ import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DepartmentFormComponent } from './components/departments/form/deparment.form.component';
 import { ModalComponent } from './components/shared/modal/modal.component';
 import { MaterialModule } from './core/material/material.module';
+import { PositionFormComponent } from './components/position/form/position.form.component';
+import { MatSelectFilterModule } from 'mat-select-filter';
+
 
 @NgModule({
   declarations: [
@@ -39,12 +42,14 @@ import { MaterialModule } from './core/material/material.module';
     DynamicformComponent,
     DynamictableComponent,
     DepartmentFormComponent,
+    PositionFormComponent,
     ModalComponent
   ],
   entryComponents:[
     HomeComponent,
     LoginComponent,
-    DepartmentFormComponent
+    DepartmentFormComponent,
+    PositionFormComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +60,7 @@ import { MaterialModule } from './core/material/material.module';
     HttpClientModule,
     NgbModule,
     MaterialModule,
+    MatSelectFilterModule,
     ToastrModule.forRoot({
       progressBar: true,
       progressAnimation: 'increasing',

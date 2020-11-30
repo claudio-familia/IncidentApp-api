@@ -1,1 +1,21 @@
-<p>position works!</p>
+<div class="row">
+    <div class="col-12">
+        <div class="card border-dark mt-3">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-6">
+                        <h5 class="mt-1">Puestos</h5>
+                    </div>
+                    <div class="col-6">
+                        <div class="pull-right">
+                            <button class="btn btn-dark" (click)="newEntry()" type="button">Nuevo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <app-dynamictable [displayedColumns]="tableHeader" [nameColumns]="tableColumn" [datatable]="positions" [hasOptions]="true" (element)="editDelete($event)"></app-dynamictable>
+            </div>
+        </div>
+    </div>
+</div>

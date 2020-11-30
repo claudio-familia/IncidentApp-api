@@ -5,6 +5,7 @@ import { DynamicForm } from 'src/app/models/dynamic-form.model';
 import { AlertService } from 'src/app/services/alert.service';
 import { DeparmentService } from 'src/app/services/deparment.service';
 import { AppSettings } from 'src/environments/environment';
+import { BaseComponent } from '../shared/base/base.component';
 import { DepartmentFormComponent } from './form/deparment.form.component';
 
 
@@ -13,7 +14,7 @@ import { DepartmentFormComponent } from './form/deparment.form.component';
   templateUrl: './departments.component.html',
   styleUrls: ['./departments.component.css']
 })
-export class DepartmentsComponent implements OnInit {
+export class DepartmentsComponent extends BaseComponent implements OnInit {
 
   deparmentForm: DynamicForm[]
   departments: Deparment[] = [];
@@ -24,7 +25,7 @@ export class DepartmentsComponent implements OnInit {
   constructor(private _deparmentService: DeparmentService, 
               private _alertService: AlertService,
               private _modalService: NgbModal) {
-    
+                super(_alertService)
     this.setColumn()
     this.setHeaders()
     this.deparmentForm = [
@@ -60,7 +61,8 @@ export class DepartmentsComponent implements OnInit {
     this._deparmentService.get().subscribe(
       res => {
         this.departments = res
-      }
+      },
+      err => this.getHttpErrorResponse(err)
     )
   }
   newEntry(){    
@@ -84,7 +86,7 @@ export class DepartmentsComponent implements OnInit {
         this._modalService.dismissAll();
       },
       err => {
-        this._alertService.ToasterNotification('Error','Hubo un error al crear el departamento','error');
+        this.getHttpErrorResponse(err)
       }
     )
   }
@@ -100,7 +102,7 @@ export class DepartmentsComponent implements OnInit {
         this._modalService.dismissAll();
       },
       err => {
-        this._alertService.ToasterNotification('Error','Hubo un error al crear el departamento','error');
+        this.getHttpErrorResponse(err)
       }
     )
   }
@@ -113,7 +115,7 @@ export class DepartmentsComponent implements OnInit {
         this._modalService.dismissAll();
       },
       err => {
-        this._alertService.ToasterNotification('Error','Hubo un error al eliminar el departamento','error');
+        this.getHttpErrorResponse(err)
       }
     )
   }
