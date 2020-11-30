@@ -8,9 +8,8 @@
                     </div>
                     <div class="col-6">
                         <div class="pull-right">
-                            <button class="btn btn-dark mr-1" type="button">Nuevo incidente</button>
-                            <button class="btn btn-dark mr-1" type="button">Prioridades</button>
-                            <button class="btn btn-dark mr-1" type="button">SLA</button>
+                            <button class="btn btn-dark mr-1" (click)="newIncident()" type="button">Nuevo incidente</button>
+                            <button class="btn btn-dark" (click)="showPriorityCard()" type="button">Prioridades</button>
                         </div>
                     </div>
                 </div>
@@ -21,12 +20,12 @@
                         <input type="text" class="form-control" placeholder="Buscar incidente" />
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-stripped table-hover">
+                        <table class="table table-striped">
                             <thead>
                                 <th>#</th>
                                 <th>Titulo</th>
                                 <th>Prioridad</th>
-                                <th>Asignada a</th>
+                                <th>Asignada</th>
                                 <th>En cola</th>
                                 <th>En proceso</th>
                                 <th>Cerrada</th>
@@ -37,27 +36,30 @@
                                     <td>1</td>
                                     <td>Accidente de trafico: fracturas leves</td>
                                     <td>Media</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>Juan Perez</td>
+                                    <td class="text-center"><img src="/assets/img/unchecked.png" /></td>
+                                    <td class="text-center"><img src="/assets/img/unchecked.png" /></td>
+                                    <td class="text-center"><img src="/assets/img/unchecked.png" /></td>
                                     <td><button type="button" class="btn btn-dark">Ver incidente</button></td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
                                     <td>Pelea entre parejas: Mujer acuchillada</td>
                                     <td>Alta</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>Juan Perez</td>
+                                    <td class="text-center"><img src="/assets/img/checked.png" /></td>
+                                    <td class="text-center"><img src="/assets/img/unchecked.png" /></td>
+                                    <td class="text-center"><img src="/assets/img/unchecked.png" /></td>
                                     <td><button type="button" class="btn btn-dark">Ver incidente</button></td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>Catastrofe natural: Personas atrapadas en terremoto</td>
                                     <td>Urgente</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>Juan Perez</td>
+                                    <td class="text-center"><img src="/assets/img/checked.png" /></td>
+                                    <td class="text-center"><img src="/assets/img/checked.png" /></td>
+                                    <td class="text-center"><img src="/assets/img/unchecked.png" /></td>
                                     <td><button type="button" class="btn btn-dark">Ver incidente</button></td>
                                 </tr>
                             </tbody>

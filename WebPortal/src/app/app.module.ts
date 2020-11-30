@@ -27,6 +27,8 @@ import { MatSelectFilterModule } from 'mat-select-filter';
 import { BaseFormComponent } from './components/shared/base/form.component';
 import { SlaComponent } from './components/sla/sla.component';
 import { PriorityComponent } from './components/priority/priority.component';
+import { IncidentFormComponent } from './components/incident/form/incident.form.component';
+import { IncidentInfoComponent } from './components/incident/info/incident.info.component';
 
 
 @NgModule({
@@ -45,12 +47,16 @@ import { PriorityComponent } from './components/priority/priority.component';
     BaseFormComponent,
     ModalComponent,
     SlaComponent,
-    PriorityComponent
+    PriorityComponent,
+    IncidentFormComponent,
+    IncidentInfoComponent
   ],
   entryComponents:[
     HomeComponent,
     LoginComponent,
-    BaseFormComponent
+    BaseFormComponent,
+    IncidentFormComponent,
+    IncidentInfoComponent
   ],
   imports: [
     BrowserModule,

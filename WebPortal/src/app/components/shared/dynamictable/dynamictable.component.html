@@ -13,7 +13,7 @@
                         <mat-cell *matCellDef="let row"> {{row[itemColumn] | date: 'dd-MM-yyyy' }} </mat-cell>
                     </div>
                     <div *ngIf="!isDate(itemColumn)">
-                        <mat-cell *matCellDef="let row"> {{ row[itemColumn] == '[object Object]' ? row[itemColumn].name : row[itemColumn] }} </mat-cell>
+                        <mat-cell *matCellDef="let row"> {{ row[itemColumn] == '[object Object]' ? row[itemColumn].name ? row[itemColumn].name : row[itemColumn].description : row[itemColumn] }} </mat-cell>
                     </div>
                 </ng-container>
             </div>
