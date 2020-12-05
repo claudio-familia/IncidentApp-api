@@ -12,8 +12,8 @@ namespace IncidentApp.Models.Configurations
             builder.HasKey(x => x.Id);
             builder.HasOne(x => x.Priority);
             builder.HasOne(x => x.Department);            
-            builder.HasOne(x => x.ReportedUser).WithOne().OnDelete(DeleteBehavior.NoAction);
-            builder.HasOne(x => x.AssignedUser).WithOne().OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(x => x.ReportedUser).WithMany().OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(x => x.AssignedUser).WithMany().OnDelete(DeleteBehavior.NoAction);
             builder.HasMany(x => x.IncidentHistory);
             builder.HasOne(x => x.Creator);
             builder.HasOne(x => x.Updater);

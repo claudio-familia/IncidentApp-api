@@ -4,14 +4,16 @@ using IncidentApp.Models.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace IncidentApp.Migrations
 {
     [DbContext(typeof(IncidentContext))]
-    partial class IncidentContextModelSnapshot : ModelSnapshot
+    [Migration("20201201115852_FixRelationProblemAtIncidentTable")]
+    partial class FixRelationProblemAtIncidentTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

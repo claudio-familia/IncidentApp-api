@@ -4,14 +4,16 @@ using IncidentApp.Models.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace IncidentApp.Migrations
 {
     [DbContext(typeof(IncidentContext))]
-    partial class IncidentContextModelSnapshot : ModelSnapshot
+    [Migration("20201201111919_MakeNullableColumnsAtIncidentTable")]
+    partial class MakeNullableColumnsAtIncidentTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -243,7 +245,9 @@ namespace IncidentApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AssignedUserId");
+                    b.HasIndex("AssignedUserId")
+                        .IsUnique()
+                        .HasFilter("[UsuarioAsignadoId] IS NOT NULL");
 
                     b.HasIndex("CreatorId");
 
@@ -251,7 +255,8 @@ namespace IncidentApp.Migrations
 
                     b.HasIndex("PriorityId");
 
-                    b.HasIndex("ReportedUserId");
+                    b.HasIndex("ReportedUserId")
+                        .IsUnique();
 
                     b.HasIndex("UpdaterId");
 
@@ -603,8 +608,8 @@ namespace IncidentApp.Migrations
             modelBuilder.Entity("IncidentApp.Models.Incident", b =>
                 {
                     b.HasOne("IncidentApp.Models.User", "AssignedUser")
-                        .WithMany()
-                        .HasForeignKey("AssignedUserId")
+                        .WithOne()
+                        .HasForeignKey("IncidentApp.Models.Incident", "AssignedUserId")
                         .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("IncidentApp.Models.User", "Creator")
@@ -622,8 +627,8 @@ namespace IncidentApp.Migrations
                         .IsRequired();
 
                     b.HasOne("IncidentApp.Models.User", "ReportedUser")
-                        .WithMany()
-                        .HasForeignKey("ReportedUserId")
+                        .WithOne()
+                        .HasForeignKey("IncidentApp.Models.Incident", "ReportedUserId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 

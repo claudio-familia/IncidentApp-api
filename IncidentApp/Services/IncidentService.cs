@@ -4,6 +4,7 @@ using IncidentApp.Models.Dtos;
 using IncidentApp.Repository.Base.Contracts;
 using IncidentApp.Services.Contracts;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,7 @@ namespace IncidentApp.Services
 
             newIncident.CreatedAt = DateTime.Now;
             newIncident.CreatedBy = UserId;
+            newIncident.ReportedUserId = UserId;
 
             return baseRepository.Create(newIncident);
         }
@@ -67,7 +69,15 @@ namespace IncidentApp.Services
 
         public IEnumerable<Incident> GetAll()
         {
-            return baseRepository.Read().Where(x => !x.IsDeleted).ToList();
+            return baseRepository.TableInstance()
+                                 .Include(x => x.ReportedUser)
+                                 .Include(x => x.AssignedUser)
+                                 .Include(x => x.AssignedUser.Employee)
+                                 .Include(x => x.Department)
+                                 .Include(x => x.Priority)
+                                 .Where(x => !x.IsDeleted)
+                                 .OrderByDescending(x => x.Id)
+                                 .ToList();
         }
 
         public Incident Update(IncidentDto entity)
@@ -83,10 +93,15 @@ namespace IncidentApp.Services
             incident.Title = entity.Title;
             incident.Description = entity.Description;
             incident.ClosedDate = entity.ClosedDate;
-            incident.ClosedComment = entity.ClosedComment;            
+            incident.ClosedComment += incident.ClosedComment != null ? "\n" +entity.ClosedComment : entity.ClosedComment;
 
             incident.UpdatedAt = DateTime.Now;
             incident.UpdatedBy = UserId;
+
+            if (entity.IsIncidentClosed.HasValue && entity.IsIncidentClosed.Value)
+            {
+                incident.ClosedDate = DateTime.Now;
+            }
 
             return baseRepository.Update(incident);
         }
