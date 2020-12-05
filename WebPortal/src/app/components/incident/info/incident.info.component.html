@@ -1,3 +1,18 @@
 <app-modal title="Prioridades - Tiempo de compromiso">
-    <h1>Incident info</h1>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="bg-dark text-white">
+                <th>Prioridad</th>
+                <th>Descripción</th>
+                <th>Compromiso</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of priorities">
+                    <td>{{item.name}}</td>
+                    <td>{{item.sla.description}}</td>
+                    <td>{{item.sla.hours}} horas</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </app-modal>

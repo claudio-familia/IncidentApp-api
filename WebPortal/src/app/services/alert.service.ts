@@ -10,7 +10,7 @@ export class AlertService {
   constructor(private toastr: ToastrService) {
   }
 
-  ModalNotification(title:string, text:string, type:SweetAlertIcon) {
+  ModalNotification(title:string, text:string, type:SweetAlertIcon, cancelInfo:string = 'No, no borrar') {
     if(type == 'question'){
       return Swal.fire({
         title: title,
@@ -18,7 +18,7 @@ export class AlertService {
         icon: type,
         showCancelButton: true,
         focusConfirm: false,
-        cancelButtonText: 'No, no borrar',
+        cancelButtonText: cancelInfo,
         confirmButtonText: 'Si, estoy seguro!'
       });  
     }

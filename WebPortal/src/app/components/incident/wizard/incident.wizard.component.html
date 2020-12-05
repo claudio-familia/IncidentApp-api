@@ -1,0 +1,72 @@
+<app-modal [title]="'Incidente #'+incident.id" [hasBodyClasses]="true" [bodyClasses]="'wizardheight'">
+
+    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+        <li [ngbNavItem]="1">
+            <a ngbNavLink>Información inicial</a>
+            <ng-template ngbNavContent>
+                <div class="tabcontent">
+                    <app-incident-form [withModal]="false" [incident]="incident"></app-incident-form>
+                    <div class="pull-right">
+                        <button class="btn btn-primary" (click)="active = 2">Siguiente</button>
+                    </div>
+                </div>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+            <a ngbNavLink>Asignación de responsable</a>
+            <ng-template ngbNavContent>
+                <div class="tabcontent">
+                    <p>El responsable del incidente es la persona que se encarga de darle seguimiento y se asegura que esta sea atendida de la manera más optima posible</p>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="events">Responsable</label><br>
+                            <mat-form-field class="w-100">
+                                <mat-select [(ngModel)]="selectedResponsable" #select [placeholder]="'Seleccione el incidente'">
+                                    <mat-select-filter *ngIf="select.focused" [placeholder]="'Buscar'" [array]="responsables" (filteredReturn)="responsableFiltered=$event"></mat-select-filter>
+                                    <mat-option *ngFor="let option of responsableFiltered" [value]="option">
+                                        {{option.name}} {{option.lastName}} - {{option.position.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <br><br><br><br><br><br>
+                    <button class="btn btn-primary" (click)="active = 1">Atras</button>
+                    <div class="pull-right">
+                        <button class="btn btn-primary" *ngIf="originalIncident.assignedUserId == null" (click)="save()">Guardar</button>
+                        <button class="btn btn-primary" *ngIf="originalIncident.assignedUserId != null" (click)="active = 3">Siguiente</button>
+                    </div>
+                </div>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="3" *ngIf="originalIncident.assignedUserId != null">
+            <a ngbNavLink>Conclusión</a>
+            <ng-template ngbNavContent>
+                <div class="tabcontent">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group ">
+                                <label>Resultados del incidente</label>
+                                <textarea class="form-control" rows="4" [(ngModel)]="incident.closedComment" placeholder="Digite los resultados del incidente "></textarea>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-3"><label>Cerrar caso</label></div>
+                                    <div class="col-3"><input type="checkbox" style="height: calc(1em + .55rem + 2px) !important;" class="form-control" [(ngModel)]="isIncidentClosed"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br><br><br><br><br>
+                    <button class="btn btn-primary" (click)="active = 2">Atras</button>
+                    <div class="pull-right">
+                        <button class="btn btn-primary" (click)="save()">Guardar</button>
+                    </div>
+                </div>
+            </ng-template>
+        </li>
+    </ul>
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+</app-modal>

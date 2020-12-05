@@ -37,7 +37,7 @@ export class HomeComponent {
             },
             {
                 name: 'Empleados',
-                description : 'Administración de la gestión humana y ten la información del personal actualizada.',
+                description : 'Administración de la gestión humana.',
                 image: 'assets/img/employee.png',
                 url: '/employees'
             },
@@ -46,6 +46,18 @@ export class HomeComponent {
                 description : 'Crea, consulta y administra los usuarios del sistema.',
                 image: 'assets/img/users.png',
                 url: '/users'
+            },
+            {
+                name: 'Prioridades',
+                description : 'Establece cuales son tus prioridades.',
+                image: 'assets/img/employee.png',
+                url: '/priorities'
+            },
+            {
+                name: 'SLAs',
+                description : 'Tiempo de compromiso para solucionar un incidente.',
+                image: 'assets/img/users.png',
+                url: '/slas'
             }
         ];
 	}

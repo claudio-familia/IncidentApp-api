@@ -17,7 +17,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <div class="table-header">
-                        <input type="text" class="form-control" placeholder="Buscar incidente" />
+                        <input type="text" [(ngModel)]="searchInput" (keydown)="getIncidentFiltered($event)" class="form-control" placeholder="Buscar incidente" />
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped">
@@ -32,35 +32,29 @@
                                 <th></th>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Accidente de trafico: fracturas leves</td>
-                                    <td>Media</td>
-                                    <td>Juan Perez</td>
-                                    <td class="text-center"><img src="/assets/img/unchecked.png" /></td>
-                                    <td class="text-center"><img src="/assets/img/unchecked.png" /></td>
-                                    <td class="text-center"><img src="/assets/img/unchecked.png" /></td>
-                                    <td><button type="button" class="btn btn-dark">Ver incidente</button></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Pelea entre parejas: Mujer acuchillada</td>
-                                    <td>Alta</td>
-                                    <td>Juan Perez</td>
+                                <tr *ngFor="let item of incidents; let i = index">
+                                    <td>{{ item.id }}</td>
+                                    <td>{{ item.title }} : {{ item.description }}</td>
+                                    <td>{{ item.priority}}</td>
+                                    <td>{{ item.assignTo }}</td>
                                     <td class="text-center"><img src="/assets/img/checked.png" /></td>
-                                    <td class="text-center"><img src="/assets/img/unchecked.png" /></td>
-                                    <td class="text-center"><img src="/assets/img/unchecked.png" /></td>
-                                    <td><button type="button" class="btn btn-dark">Ver incidente</button></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Catastrofe natural: Personas atrapadas en terremoto</td>
-                                    <td>Urgente</td>
-                                    <td>Juan Perez</td>
-                                    <td class="text-center"><img src="/assets/img/checked.png" /></td>
-                                    <td class="text-center"><img src="/assets/img/checked.png" /></td>
-                                    <td class="text-center"><img src="/assets/img/unchecked.png" /></td>
-                                    <td><button type="button" class="btn btn-dark">Ver incidente</button></td>
+                                    <td class="text-center"><img src="/assets/img/checked.png" *ngIf="item.isProcessDone" /><img src="/assets/img/unchecked.png" *ngIf="!item.isProcessDone" /> </td>
+                                    <td class="text-center"><img src="/assets/img/checked.png" *ngIf="item.isClosed" /><img src="/assets/img/unchecked.png" *ngIf="!item.isClosed" /> </td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-12" *ngIf="!item.isClosed">
+                                                <div class="text-center">
+                                                    <button type="button" class="btn btn-primary mr-1" (click)="wizard(item)">Asignar</button>
+                                                    <button type="button" class="btn btn-dark" (click)="wizard(item)">Detalle</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-12" *ngIf="item.isClosed">
+                                                <div class="text-center">
+                                                    <button type="button" class="btn btn-dark" (click)="wizard(item)">Detalle</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

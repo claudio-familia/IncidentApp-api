@@ -17,7 +17,7 @@
                     </div>
                 </ng-container>
             </div>
-            <ng-container matColumnDef="options">
+            <ng-container matColumnDef="options" *ngIf="hasOptions">
                 <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
                 <mat-cell *matCellDef="let row">
                     <button class="btn btn-dark btn-sm btn-edit" (click)="edit(row)">Editar</button> |

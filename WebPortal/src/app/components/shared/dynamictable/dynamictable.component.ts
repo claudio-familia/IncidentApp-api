@@ -26,7 +26,9 @@ export class DynamictableComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.nameColumns.push('options')
+    if(this.hasOptions){
+      this.nameColumns.push('options')
+    }
     this.dataSource = new MatTableDataSource(this.datatable);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

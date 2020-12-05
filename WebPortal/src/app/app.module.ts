@@ -29,6 +29,7 @@ import { SlaComponent } from './components/sla/sla.component';
 import { PriorityComponent } from './components/priority/priority.component';
 import { IncidentFormComponent } from './components/incident/form/incident.form.component';
 import { IncidentInfoComponent } from './components/incident/info/incident.info.component';
+import { IncidentWizardComponent } from './components/incident/wizard/incident.wizard.component';
 
 
 @NgModule({
@@ -49,14 +50,16 @@ import { IncidentInfoComponent } from './components/incident/info/incident.info.
     SlaComponent,
     PriorityComponent,
     IncidentFormComponent,
-    IncidentInfoComponent
+    IncidentInfoComponent,
+    IncidentWizardComponent
   ],
   entryComponents:[
     HomeComponent,
     LoginComponent,
     BaseFormComponent,
     IncidentFormComponent,
-    IncidentInfoComponent
+    IncidentInfoComponent,
+    IncidentWizardComponent
   ],
   imports: [
     BrowserModule,

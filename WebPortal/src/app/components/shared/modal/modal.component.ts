@@ -7,7 +7,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit {
-  @Input() title:string  
+  @Input() title:string
+  @Input() hasBodyClasses: boolean
+  @Input() bodyClasses: string
   constructor(private _activeModal: NgbActiveModal) { }
 
   closeModal(){

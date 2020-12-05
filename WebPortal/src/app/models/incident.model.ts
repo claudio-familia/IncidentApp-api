@@ -12,7 +12,8 @@ export class Incident {
     title: string;
     description: string;
     closedDate: Date
-    closedComment: string; 
+    closedComment: string;
+    isIncidentClosed?: boolean
 
     priority: Priority;
     department: Deparment;
