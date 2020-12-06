@@ -80,7 +80,7 @@ export class IncidentWizardComponent extends BaseComponent implements OnInit {
       this.incident.assignedUserId = this.selectedResponsable.user.id;
       this._incidentService.update(this.incident).subscribe(
         res => {
-            if(this.selectedResponsable && this.incident.assignedUserId != this.selectedResponsable.user.id)
+            if(this.selectedResponsable)
               this.saveResponsable();
             else
               this._alertService.ToasterNotification('Incidente actualizado', 'Incidente actualizado correctamente', 'success');

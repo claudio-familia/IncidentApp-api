@@ -1,0 +1,44 @@
+<app-modal [title]="'Incidente #' +incidentId">
+    <div class="incident-detail" *ngIf="incident != null">
+        <h4>Datos del incidente</h4>
+        <hr>
+        <h5>Titulo: <span class="text-grey">{{incident.title}}</span></h5>
+        <h5>Descripción: <span class="text-grey">{{incident.description}}</span></h5>
+        <h5>Prioridad: <span class="text-grey">{{incident.priority}}</span></h5>
+        <br>
+        <h4>Historial del incidente</h4>
+        <hr>
+        <div class="row" *ngIf="incident.histories.length > 0">
+            <div class="col-md-12">
+                <div class="main-timeline7">
+                    <div class="timeline">
+                        <div class="timeline-icon">
+                            <i class="fa fa-book"></i>
+                        </div>
+                        <span class="year">Creación del incidente</span>
+                        <div class="timeline-content">
+                            <h5 class="title">Incidente</h5>
+                            <p class="description">
+                                Incidente creado en {{incident.createdAt | date: 'MMMM dd, yyyy hh:mm:ss aaaaa' }}.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline" *ngFor="let item of incident.histories; let i = index">
+                        <div class="timeline-icon">
+                            <i class="fa fa-user-secret" *ngIf="i == 0"></i>
+                            <i class="fa fa-file-text " *ngIf="i != 0 && !(i == (incident.histories.length - 1) && incident.isClosed)"></i>
+                            <i class="fa fa-fire-extinguisher" *ngIf="i == (incident.histories.length - 1) && incident.isClosed"></i>
+                        </div>
+                        <span class="year">{{item.createdAt | date: 'MMMM dd, yyyy hh:mm:ss aaaaa' | titlecase }}</span>
+                        <div class="timeline-content">
+                            <h5 class="title">Comentarios</h5>
+                            <p class="description">
+                                {{item.comment}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-modal>

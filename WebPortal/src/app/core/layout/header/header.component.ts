@@ -8,9 +8,11 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   @Input() drawer: any
+  userName: string = ''
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.userName = localStorage.getItem('app-user')
   }
 
   logout(){

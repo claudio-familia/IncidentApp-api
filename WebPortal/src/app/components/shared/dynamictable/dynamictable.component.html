@@ -20,8 +20,8 @@
             <ng-container matColumnDef="options" *ngIf="hasOptions">
                 <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
                 <mat-cell *matCellDef="let row">
-                    <button class="btn btn-dark btn-sm btn-edit" (click)="edit(row)">Editar</button> |
-                    <button class="btn btn-danger btn-sm" (click)="delete(row)">Eliminar</button>
+                    <button class="btn btn-dark btn-sm btn-edit" title="Editar" (click)="edit(row)"><i class="fa fa-pencil-square-o"></i></button> |
+                    <button class="btn btn-danger btn-sm" title="Eliminar" (click)="delete(row)"><i class="fa fa-trash-o"></i></button>
                 </mat-cell>
             </ng-container>
             <mat-header-row *matHeaderRowDef="nameColumns"></mat-header-row>

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,7 +20,7 @@ import { EmployeeComponent } from './components/employee/employee.component';
 import { UserComponent } from './components/user/user.component';
 import { DynamicformComponent } from './components/shared/dynamicform/dynamicform.component';
 import { DynamictableComponent } from './components/shared/dynamictable/dynamictable.component';
-import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from './components/shared/modal/modal.component';
 import { MaterialModule } from './core/material/material.module';
 import { MatSelectFilterModule } from 'mat-select-filter';
@@ -30,7 +30,13 @@ import { PriorityComponent } from './components/priority/priority.component';
 import { IncidentFormComponent } from './components/incident/form/incident.form.component';
 import { IncidentInfoComponent } from './components/incident/info/incident.info.component';
 import { IncidentWizardComponent } from './components/incident/wizard/incident.wizard.component';
+import { IncidentDetailComponent } from './components/incident/detail/incident.detail.component';
+import { registerLocaleData } from '@angular/common';
+import localeDo from '@angular/common/locales/es-DO';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
+
+registerLocaleData(localeDo, 'es');
 
 @NgModule({
   declarations: [
@@ -51,15 +57,17 @@ import { IncidentWizardComponent } from './components/incident/wizard/incident.w
     PriorityComponent,
     IncidentFormComponent,
     IncidentInfoComponent,
-    IncidentWizardComponent
+    IncidentWizardComponent,
+    IncidentDetailComponent
   ],
-  entryComponents:[
+  entryComponents: [
     HomeComponent,
     LoginComponent,
     BaseFormComponent,
     IncidentFormComponent,
     IncidentInfoComponent,
-    IncidentWizardComponent
+    IncidentWizardComponent,
+    IncidentDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +79,7 @@ import { IncidentWizardComponent } from './components/incident/wizard/incident.w
     NgbModule,
     MaterialModule,
     MatSelectFilterModule,
+    AngularFontAwesomeModule,
     ToastrModule.forRoot({
       progressBar: true,
       progressAnimation: 'increasing',
@@ -81,7 +90,7 @@ import { IncidentWizardComponent } from './components/incident/wizard/incident.w
     NgbModule,
     MaterialModule
   ],
-  providers: [AuthService, AlertService, NgbActiveModal],
+  providers: [AuthService, AlertService, NgbActiveModal, { provide: LOCALE_ID, useValue: 'es-DO'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

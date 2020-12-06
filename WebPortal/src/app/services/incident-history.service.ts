@@ -8,6 +8,6 @@ import { BaseService } from './base.service';
 })
 export class IncidentHistoryService extends BaseService<IncidentHistory> {  
   constructor(public httpClient:HttpClient) {
-    super('incidenthistory', httpClient);    
+    super('incidenthistory', httpClient);
   }
 }

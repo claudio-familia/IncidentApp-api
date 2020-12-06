@@ -16,6 +16,8 @@ export class BaseComponent {
                             window.location.replace('/login') 
                         }
                     })
+            case 404:
+              return this.alertService.ToasterNotification('Aviso','No fueron encontrados datos en esta operación.','info')
             case 500:
               return this.alertService.ToasterNotification('Error','Oops! Ha ocurrido un error.','error')
             case 403:

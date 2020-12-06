@@ -9,14 +9,14 @@
                 <p>
                     <mat-form-field class="w-100">
                         <mat-label>Username</mat-label>
-                        <input matInput [(ngModel)]="username" placeholder="Type your username">
+                        <input matInput [(ngModel)]="username" (keydown.enter)="login()" placeholder="Type your username">
                         <mat-icon matSuffix>perm_identity</mat-icon>
                     </mat-form-field>
                 </p>
                 <p>
                     <mat-form-field class="w-100">
                         <mat-label>Password</mat-label>
-                        <input matInput [(ngModel)]="password" [type]="hidePassword ? 'password' : 'text'" placeholder="Type your password">
+                        <input matInput [(ngModel)]="password" (keydown.enter)="login()" [type]="hidePassword ? 'password' : 'text'" placeholder="Type your password">
                         <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                             <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
                             </button>

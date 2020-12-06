@@ -1,1 +1,12 @@
-<p>incident-history works!</p>
+<div class="row">
+    <div class="col-12">
+        <div class="card border-dark mt-3">
+            <div class="card-header">
+                <h5 class="mt-1">Historial de incidentes</h5>
+            </div>
+            <div class="card-body">
+                <app-dynamictable [displayedColumns]="tableHeader" [nameColumns]="tableColumn" [datatable]="incidents" [hasOptions]="false" (element)="detail($event)"></app-dynamictable>
+            </div>
+        </div>
+    </div>
+</div>

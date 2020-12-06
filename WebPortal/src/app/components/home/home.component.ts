@@ -50,13 +50,13 @@ export class HomeComponent {
             {
                 name: 'Prioridades',
                 description : 'Establece cuales son tus prioridades.',
-                image: 'assets/img/employee.png',
+                image: 'assets/img/numbered.png',
                 url: '/priorities'
             },
             {
                 name: 'SLAs',
                 description : 'Tiempo de compromiso para solucionar un incidente.',
-                image: 'assets/img/users.png',
+                image: 'assets/img/hourglass.png',
                 url: '/slas'
             }
         ];

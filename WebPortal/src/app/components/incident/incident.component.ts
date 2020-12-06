@@ -6,6 +6,7 @@ import { AlertService } from 'src/app/services/alert.service';
 import { IncidentService } from 'src/app/services/incident.service';
 import { AppSettings } from 'src/environments/environment';
 import { BaseComponent } from '../shared/base/base.component';
+import { IncidentDetailComponent } from './detail/incident.detail.component';
 import { IncidentFormComponent } from './form/incident.form.component';
 import { IncidentInfoComponent } from './info/incident.info.component';
 import { IncidentWizardComponent } from './wizard/incident.wizard.component';
@@ -61,6 +62,11 @@ export class IncidentComponent extends BaseComponent implements OnInit {
     const modal = this._modalService.open(IncidentWizardComponent, new AppSettings().getModalBasicConf());
     modal.componentInstance.incidentId = incident.id;
     modal.componentInstance.isClosed = incident.isClosed;
+  }
+
+  detail(incident:IncidentDto){    
+    const modal = this._modalService.open(IncidentDetailComponent, new AppSettings().getModalBasicConf());
+    modal.componentInstance.incidentId = incident.id;    
   }
 
   getIncidents(){
