@@ -68,7 +68,7 @@ namespace IncidentApp.Services
         }
         public IEnumerable<Position> GetAll()
         {            
-            return baseRepository.TableInstance().Include(x => x.Department).Where(x => !x.IsDeleted).ToList();
+            return baseRepository.TableInstance().Include(x => x.Department).Where(x => !x.IsDeleted).OrderByDescending(x => x.Id).ToList();
         }
     
         public Position Update(PositionDto entity)

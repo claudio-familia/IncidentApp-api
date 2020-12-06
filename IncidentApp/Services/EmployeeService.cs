@@ -72,6 +72,7 @@ namespace IncidentApp.Services
                                  .Include(x => x.Position)
                                  .Include(x => x.User)
                                  .Where(x => !x.IsDeleted)
+                                 .OrderByDescending(x => x.Id)
                                  .ToList();
         }
 

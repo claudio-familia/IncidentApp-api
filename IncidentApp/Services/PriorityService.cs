@@ -67,7 +67,7 @@ namespace IncidentApp.Services
 
         public IEnumerable<Priority> GetAll()
         {
-            return baseRepository.TableInstance().Include(prio => prio.SLA).Where(x => !x.IsDeleted).ToList();
+            return baseRepository.TableInstance().Include(prio => prio.SLA).Where(x => !x.IsDeleted).OrderByDescending(x => x.Id).ToList();
         }
 
         public Priority Update(PriorityDto entity)

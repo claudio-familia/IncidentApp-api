@@ -4,6 +4,7 @@ using IncidentApp.Models.Dtos;
 using IncidentApp.Repository.Base.Contracts;
 using IncidentApp.Services.Contracts;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,16 +58,30 @@ namespace IncidentApp.Services
 
         public IncidentHistory Get(int id)
         {
-            IncidentHistory entity = baseRepository.Read(id);
+            IncidentHistory entity = baseRepository.TableInstance()
+                                 .Include(x => x.Incident)
+                                 .Include(x => x.Incident.Priority)
+                                 .Include(x => x.Incident.AssignedUser)
+                                 .Include(x => x.Incident.AssignedUser.Employee)
+                                 .Include(x => x.Incident.Creator)
+                                 .Include(x => x.Incident.Creator.Employee)
+                                 .Where(x => !x.IsDeleted && x.IncidentId == id)
+                                 .OrderBy(x => x.Id)
+                                 .FirstOrDefault();
 
-            if (!entity.IsDeleted) return entity;
-
-            return null;
+            return entity;            
         }
 
         public IEnumerable<IncidentHistory> GetAll()
         {
-            return baseRepository.Read().Where(x => !x.IsDeleted).ToList();
+            return baseRepository.TableInstance()
+                                 .Include(x => x.Incident)
+                                 .Include(x => x.Incident.Priority)
+                                 .Include(x => x.Incident.AssignedUser)
+                                 .Include(x => x.Incident.AssignedUser.Employee)                                 
+                                 .Where(x => !x.IsDeleted)                                 
+                                 .OrderByDescending(x => x.Incident.Id)
+                                 .ToList();
         }
 
         public IncidentHistory Update(IncidentHistoryDto entity)

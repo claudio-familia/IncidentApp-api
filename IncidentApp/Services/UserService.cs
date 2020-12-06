@@ -74,7 +74,7 @@ namespace IncidentApp.Services
 
         public IEnumerable<User> GetAll()
         {
-            return baseRepository.Read().Where(x => !x.IsDeleted).ToList();
+            return baseRepository.Read().Where(x => !x.IsDeleted).OrderByDescending(x => x.Id).ToList();
         }
 
         public User Update(UserDto entity)
