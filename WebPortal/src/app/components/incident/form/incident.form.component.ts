@@ -5,6 +5,7 @@ import { Priority } from 'src/app/models/priority.model';
 import { AlertService } from 'src/app/services/alert.service';
 import { PriorityService } from 'src/app/services/priority.service';
 import { BaseComponent } from '../../shared/base/base.component';
+import {NgForm} from '@angular/forms';
 
 @Component({
     selector: 'app-incident-form',
@@ -57,8 +58,11 @@ export class IncidentFormComponent extends BaseComponent implements OnInit {
         )
     }
 
-    save(){
-        this.OnSave.emit(this.incident)
+    save(form){
+        if(form.valid)
+            this.OnSave.emit(this.incident)
+        else
+            this._alertService.ToasterNotification('Aviso','Favor completar los campos requeridos','info')
     }
 
     cancel(){
