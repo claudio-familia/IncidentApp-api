@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Employee } from 'src/app/models/employee.model';
 import { IncidentHistory } from 'src/app/models/incident-history.model';
@@ -31,7 +31,8 @@ import { BaseComponent } from '../../shared/base/base.component';
   `]
 })
 export class IncidentWizardComponent extends BaseComponent implements OnInit {
-  @Input() incidentId:string  
+  @Input() incidentId:string
+  @Output() onClosed: EventEmitter<any> = new EventEmitter<any>();
   incident:Incident = new Incident()
   originalIncident:Incident = new Incident()
   isIncidentClosed: boolean = false
@@ -124,6 +125,7 @@ export class IncidentWizardComponent extends BaseComponent implements OnInit {
     this._incidentHistoryService.create(incidentHistoryItem).subscribe(
       res => {
         this._alertService.ToasterNotification('Incidente actualizado exitosamente', 'El responsable seleccionado ha sido asignado', 'success');
+        this.onClosed.emit();
         this._modalService.dismissAll();
       }
     )
@@ -137,7 +139,8 @@ export class IncidentWizardComponent extends BaseComponent implements OnInit {
     }
 
     this._incidentHistoryService.create(incidentHistoryItem).subscribe(
-      res => {       
+      res => {
+        this.onClosed.emit();
         this._modalService.dismissAll();
       },
       err => this.getHttpErrorResponse(err)

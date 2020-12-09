@@ -62,6 +62,33 @@ export class IncidentComponent extends BaseComponent implements OnInit {
     const modal = this._modalService.open(IncidentWizardComponent, new AppSettings().getModalBasicConf());
     modal.componentInstance.incidentId = incident.id;
     modal.componentInstance.isClosed = incident.isClosed;
+    modal.componentInstance.onClosed.subscribe(
+      () => {
+        this.getIncidents();
+      }
+    )
+  }
+
+  delete(incident:IncidentDto){
+    this._alertService.ModalNotification('Aviso','¿Esta seguro que desea borrar este incidente?','question')
+          .then(res => {
+            if(res.isConfirmed){
+              this.deleteIncident(incident.id.toString())
+            }else{
+              this._alertService.ToasterNotification('Aviso','No se borro el incidente','info');
+            }
+          })
+    
+  }
+
+  deleteIncident(id:string){
+    this._incidentService.delete(id).subscribe(
+      res => {
+        this._alertService.ToasterNotification('Exitoso','Incidente eliminado correctamente','success');
+        this.getIncidents();
+      },
+      err => this.getHttpErrorResponse(err)
+    )
   }
 
   detail(incident:IncidentDto){    
