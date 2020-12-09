@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using IncidentApp.Models;
+using IncidentApp.Models.Constants;
 using IncidentApp.Models.Dtos;
 using IncidentApp.Repository.Base.Contracts;
 using IncidentApp.Services.Contracts;
@@ -31,6 +32,8 @@ namespace IncidentApp.Services
 
             newIncidentHistory.CreatedAt = DateTime.Now;
             newIncidentHistory.CreatedBy = UserId;
+            newIncidentHistory.Status = StatusConstant.Active;
+
 
             return baseRepository.Create(newIncidentHistory);
         }

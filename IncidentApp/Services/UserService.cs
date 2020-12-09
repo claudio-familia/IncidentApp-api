@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using IncidentApp.Models;
+using IncidentApp.Models.Constants;
 using IncidentApp.Models.Dtos;
 using IncidentApp.Repository.Base.Contracts;
 using IncidentApp.Services.Contracts;
@@ -38,6 +39,7 @@ namespace IncidentApp.Services
 
             newUser.CreatedAt = DateTime.Now;
             newUser.CreatedBy = UserId;
+            newUser.Status = StatusConstant.Active;
 
             return baseRepository.Create(newUser);
         }

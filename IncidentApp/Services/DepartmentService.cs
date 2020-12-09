@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using IncidentApp.Models;
+using IncidentApp.Models.Constants;
 using IncidentApp.Models.Dtos;
 using IncidentApp.Repository.Base.Contracts;
 using IncidentApp.Services.Contracts;
@@ -30,6 +31,7 @@ namespace IncidentApp.Services
 
             newDepartment.CreatedAt = DateTime.Now;
             newDepartment.CreatedBy = UserId;
+            newDepartment.Status = StatusConstant.Active;
 
             return baseRepository.Create(newDepartment);
         }
