@@ -58,7 +58,7 @@ export class EmployeeComponent extends BaseComponent implements OnInit {
     this.tableHeader.push('Apellido');
     this.tableHeader.push('Cédula');
     this.tableHeader.push('Email');
-    this.tableHeader.push('Telefono');
+    this.tableHeader.push('Teléfono');
     this.tableHeader.push('Fecha de nacimiento');    
     this.tableHeader.push('Fecha de creación');
     this.tableHeader.push('Fecha de actualización');
@@ -128,8 +128,8 @@ export class EmployeeComponent extends BaseComponent implements OnInit {
       <DynamicForm>{
         name: 'phonenumber',
         isRequired: true,
-        label: 'Telefono o celular',
-        placeholder: 'Digite el telefono o celular del empleado',
+        label: 'Teléfono o celular',
+        placeholder: 'Digite el teléfono o celular del empleado',
         type: 'text',
         value: ''
       },      
