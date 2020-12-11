@@ -3,7 +3,6 @@ using System;
 using IncidentApp.Models.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace IncidentApp.Migrations
@@ -16,20 +15,18 @@ namespace IncidentApp.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.8")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("IncidentApp.Models.Department", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("DepartamentoId")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnName("FechaRegistro")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<int>("CreatedBy")
                         .HasColumnName("CreadoPor")
@@ -40,22 +37,22 @@ namespace IncidentApp.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnName("Borrado")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnName("Nombre")
-                        .HasColumnType("nvarchar(100)")
+                        .HasColumnType("varchar(100)")
                         .HasMaxLength(100);
 
                     b.Property<string>("Status")
                         .HasColumnName("Estatus")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2)")
                         .HasMaxLength(2);
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnName("FechaModificacion")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<int>("UpdatedBy")
                         .HasColumnName("ModificadoPor")
@@ -78,22 +75,21 @@ namespace IncidentApp.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("EmpleadoId")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("BornDate")
                         .HasColumnName("FechaNacimiento")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Cedula")
                         .IsRequired()
                         .HasColumnName("Cedula")
-                        .HasColumnType("nvarchar(11)")
+                        .HasColumnType("varchar(11)")
                         .HasMaxLength(11);
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnName("FechaRegistro")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<int>("CreatedBy")
                         .HasColumnName("CreadoPor")
@@ -104,28 +100,28 @@ namespace IncidentApp.Migrations
 
                     b.Property<string>("Email")
                         .HasColumnName("Correo")
-                        .HasColumnType("nvarchar(50)")
+                        .HasColumnType("varchar(50)")
                         .HasMaxLength(50);
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnName("Borrado")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnName("Apellido")
-                        .HasColumnType("nvarchar(100)")
+                        .HasColumnType("varchar(100)")
                         .HasMaxLength(100);
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnName("Nombre")
-                        .HasColumnType("nvarchar(100)")
+                        .HasColumnType("varchar(100)")
                         .HasMaxLength(100);
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnName("Telefono")
-                        .HasColumnType("nvarchar(15)")
+                        .HasColumnType("varchar(15)")
                         .HasMaxLength(15);
 
                     b.Property<int>("PositionId")
@@ -134,12 +130,12 @@ namespace IncidentApp.Migrations
 
                     b.Property<string>("Status")
                         .HasColumnName("Estatus")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2)")
                         .HasMaxLength(2);
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnName("FechaModificacion")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<int>("UpdatedBy")
                         .HasColumnName("ModificadoPor")
@@ -171,8 +167,7 @@ namespace IncidentApp.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("IncidenteId")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int?>("AssignedUserId")
                         .HasColumnName("UsuarioAsignadoId")
@@ -180,16 +175,16 @@ namespace IncidentApp.Migrations
 
                     b.Property<string>("ClosedComment")
                         .HasColumnName("ComentarioCierre")
-                        .HasColumnType("nvarchar(500)")
+                        .HasColumnType("varchar(500)")
                         .HasMaxLength(500);
 
                     b.Property<DateTime?>("ClosedDate")
                         .HasColumnName("FechaCierre")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnName("FechaRegistro")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<int>("CreatedBy")
                         .HasColumnName("CreadoPor")
@@ -205,11 +200,11 @@ namespace IncidentApp.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnName("Descripcion")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnName("Borrado")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int>("PriorityId")
                         .HasColumnName("PrioridadId")
@@ -221,18 +216,18 @@ namespace IncidentApp.Migrations
 
                     b.Property<string>("Status")
                         .HasColumnName("Estatus")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2)")
                         .HasMaxLength(2);
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnName("Titulo")
-                        .HasColumnType("nvarchar(200)")
+                        .HasColumnType("varchar(200)")
                         .HasMaxLength(200);
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnName("FechaModificacion")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<int>("UpdatedBy")
                         .HasColumnName("ModificadoPor")
@@ -263,18 +258,17 @@ namespace IncidentApp.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("HistorialIncidenteId")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("Comment")
                         .IsRequired()
                         .HasColumnName("Comentario")
-                        .HasColumnType("nvarchar(500)")
+                        .HasColumnType("varchar(500)")
                         .HasMaxLength(500);
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnName("FechaRegistro")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<int>("CreatedBy")
                         .HasColumnName("CreadoPor")
@@ -289,16 +283,16 @@ namespace IncidentApp.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnName("Borrado")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Status")
                         .HasColumnName("Estatus")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2)")
                         .HasMaxLength(2);
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnName("FechaModificacion")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<int>("UpdatedBy")
                         .HasColumnName("ModificadoPor")
@@ -323,12 +317,11 @@ namespace IncidentApp.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("PuestoId")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnName("FechaRegistro")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<int>("CreatedBy")
                         .HasColumnName("CreadoPor")
@@ -343,22 +336,22 @@ namespace IncidentApp.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnName("Borrado")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnName("Nombre")
-                        .HasColumnType("nvarchar(100)")
+                        .HasColumnType("varchar(100)")
                         .HasMaxLength(100);
 
                     b.Property<string>("Status")
                         .HasColumnName("Estatus")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2)")
                         .HasMaxLength(2);
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnName("FechaModificacion")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<int>("UpdatedBy")
                         .HasColumnName("ModificadoPor")
@@ -383,12 +376,11 @@ namespace IncidentApp.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("PrioridadId")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnName("FechaRegistro")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<int>("CreatedBy")
                         .HasColumnName("CreadoPor")
@@ -399,12 +391,12 @@ namespace IncidentApp.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnName("Borrado")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnName("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int>("SLAId")
                         .HasColumnName("SLAId")
@@ -412,12 +404,12 @@ namespace IncidentApp.Migrations
 
                     b.Property<string>("Status")
                         .HasColumnName("Estatus")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2)")
                         .HasMaxLength(2);
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnName("FechaModificacion")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<int>("UpdatedBy")
                         .HasColumnName("ModificadoPor")
@@ -442,12 +434,11 @@ namespace IncidentApp.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("SLAId")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnName("FechaRegistro")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<int>("CreatedBy")
                         .HasColumnName("CreadoPor")
@@ -459,7 +450,7 @@ namespace IncidentApp.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnName("Descripcion")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int>("Hours")
                         .HasColumnName("CantidadHoras")
@@ -467,16 +458,16 @@ namespace IncidentApp.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnName("Borrado")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Status")
                         .HasColumnName("Estatus")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2)")
                         .HasMaxLength(2);
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnName("FechaModificacion")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<int>("UpdatedBy")
                         .HasColumnName("ModificadoPor")
@@ -499,12 +490,11 @@ namespace IncidentApp.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("EmpleadoId")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnName("FechaRegistro")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<int>("CreatedBy")
                         .HasColumnName("CreadoPor")
@@ -515,21 +505,21 @@ namespace IncidentApp.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnName("Borrado")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnName("Contrasena")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Status")
                         .HasColumnName("Estatus")
-                        .HasColumnType("nvarchar(2)")
+                        .HasColumnType("varchar(2)")
                         .HasMaxLength(2);
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnName("FechaModificacion")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<int>("UpdatedBy")
                         .HasColumnName("ModificadoPor")
@@ -541,7 +531,7 @@ namespace IncidentApp.Migrations
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnName("NombreUsuario")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 

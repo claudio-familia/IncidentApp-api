@@ -20,15 +20,15 @@ namespace IncidentApp.Models.Configurations
             builder.Property(x => x.UserId).HasColumnName("UsuarioId");
             builder.Property(x => x.Name).HasColumnName("Nombre").HasMaxLength(100).IsRequired();
             builder.Property(x => x.LastName).HasColumnName("Apellido").HasMaxLength(100).IsRequired();
-            builder.Property(x => x.BornDate).HasColumnName("FechaNacimiento");
+            builder.Property(x => x.BornDate).HasColumnName("FechaNacimiento").HasColumnType("datetime");
             builder.Property(x => x.Cedula).HasColumnName("Cedula").HasMaxLength(11).IsRequired();
             builder.Property(x => x.Email).HasColumnName("Correo").HasMaxLength(50);
             builder.Property(x => x.PhoneNumber).HasColumnName("Telefono").HasMaxLength(15);
 
             builder.Property(x => x.Status).HasColumnName("Estatus").HasMaxLength(2);
             builder.Property(x => x.IsDeleted).HasColumnName("Borrado");
-            builder.Property(x => x.CreatedAt).HasColumnName("FechaRegistro");
-            builder.Property(x => x.UpdatedAt).HasColumnName("FechaModificacion");
+            builder.Property(x => x.CreatedAt).HasColumnName("FechaRegistro").HasColumnType("datetime");
+            builder.Property(x => x.UpdatedAt).HasColumnName("FechaModificacion").HasColumnType("datetime");
             builder.Property(x => x.CreatedBy).HasColumnName("CreadoPor");
             builder.Property(x => x.UpdatedBy).HasColumnName("ModificadoPor");
         }

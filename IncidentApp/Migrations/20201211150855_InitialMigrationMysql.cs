@@ -1,9 +1,10 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using MySql.Data.EntityFrameworkCore.Metadata;
 
 namespace IncidentApp.Migrations
 {
-    public partial class InitialSchema : Migration
+    public partial class InitialMigrationMysql : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,17 +13,17 @@ namespace IncidentApp.Migrations
                 columns: table => new
                 {
                     EmpleadoId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Estatus = table.Column<string>(maxLength: 2, nullable: true),
                     Borrado = table.Column<bool>(nullable: false),
                     CreadoPor = table.Column<int>(nullable: false),
-                    FechaRegistro = table.Column<DateTime>(nullable: false),
+                    FechaRegistro = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModificadoPor = table.Column<int>(nullable: false),
-                    FechaModificacion = table.Column<DateTime>(nullable: false),
+                    FechaModificacion = table.Column<DateTime>(type: "datetime", nullable: false),
                     CreatorId = table.Column<int>(nullable: true),
                     UpdaterId = table.Column<int>(nullable: true),
                     NombreUsuario = table.Column<string>(nullable: false),
-                    Contrasena = table.Column<string>(maxLength: 100, nullable: false)
+                    Contrasena = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -46,13 +47,13 @@ namespace IncidentApp.Migrations
                 columns: table => new
                 {
                     DepartamentoId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Estatus = table.Column<string>(maxLength: 2, nullable: true),
                     Borrado = table.Column<bool>(nullable: false),
                     CreadoPor = table.Column<int>(nullable: false),
-                    FechaRegistro = table.Column<DateTime>(nullable: false),
+                    FechaRegistro = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModificadoPor = table.Column<int>(nullable: false),
-                    FechaModificacion = table.Column<DateTime>(nullable: false),
+                    FechaModificacion = table.Column<DateTime>(type: "datetime", nullable: false),
                     CreatorId = table.Column<int>(nullable: true),
                     UpdaterId = table.Column<int>(nullable: true),
                     Nombre = table.Column<string>(maxLength: 100, nullable: false)
@@ -79,13 +80,13 @@ namespace IncidentApp.Migrations
                 columns: table => new
                 {
                     SLAId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Estatus = table.Column<string>(maxLength: 2, nullable: true),
                     Borrado = table.Column<bool>(nullable: false),
                     CreadoPor = table.Column<int>(nullable: false),
-                    FechaRegistro = table.Column<DateTime>(nullable: false),
+                    FechaRegistro = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModificadoPor = table.Column<int>(nullable: false),
-                    FechaModificacion = table.Column<DateTime>(nullable: false),
+                    FechaModificacion = table.Column<DateTime>(type: "datetime", nullable: false),
                     CreatorId = table.Column<int>(nullable: true),
                     UpdaterId = table.Column<int>(nullable: true),
                     Descripcion = table.Column<string>(nullable: false),
@@ -113,13 +114,13 @@ namespace IncidentApp.Migrations
                 columns: table => new
                 {
                     PuestoId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Estatus = table.Column<string>(maxLength: 2, nullable: true),
                     Borrado = table.Column<bool>(nullable: false),
                     CreadoPor = table.Column<int>(nullable: false),
-                    FechaRegistro = table.Column<DateTime>(nullable: false),
+                    FechaRegistro = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModificadoPor = table.Column<int>(nullable: false),
-                    FechaModificacion = table.Column<DateTime>(nullable: false),
+                    FechaModificacion = table.Column<DateTime>(type: "datetime", nullable: false),
                     CreatorId = table.Column<int>(nullable: true),
                     UpdaterId = table.Column<int>(nullable: true),
                     Nombre = table.Column<string>(maxLength: 100, nullable: false),
@@ -153,13 +154,13 @@ namespace IncidentApp.Migrations
                 columns: table => new
                 {
                     PrioridadId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Estatus = table.Column<string>(maxLength: 2, nullable: true),
                     Borrado = table.Column<bool>(nullable: false),
                     CreadoPor = table.Column<int>(nullable: false),
-                    FechaRegistro = table.Column<DateTime>(nullable: false),
+                    FechaRegistro = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModificadoPor = table.Column<int>(nullable: false),
-                    FechaModificacion = table.Column<DateTime>(nullable: false),
+                    FechaModificacion = table.Column<DateTime>(type: "datetime", nullable: false),
                     CreatorId = table.Column<int>(nullable: true),
                     UpdaterId = table.Column<int>(nullable: true),
                     SLAId = table.Column<int>(nullable: false),
@@ -193,13 +194,13 @@ namespace IncidentApp.Migrations
                 columns: table => new
                 {
                     EmpleadoId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Estatus = table.Column<string>(maxLength: 2, nullable: true),
                     Borrado = table.Column<bool>(nullable: false),
                     CreadoPor = table.Column<int>(nullable: false),
-                    FechaRegistro = table.Column<DateTime>(nullable: false),
+                    FechaRegistro = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModificadoPor = table.Column<int>(nullable: false),
-                    FechaModificacion = table.Column<DateTime>(nullable: false),
+                    FechaModificacion = table.Column<DateTime>(type: "datetime", nullable: false),
                     CreatorId = table.Column<int>(nullable: true),
                     UpdaterId = table.Column<int>(nullable: true),
                     PuestoId = table.Column<int>(nullable: false),
@@ -209,7 +210,7 @@ namespace IncidentApp.Migrations
                     Cedula = table.Column<string>(maxLength: 11, nullable: false),
                     Correo = table.Column<string>(maxLength: 50, nullable: true),
                     Telefono = table.Column<string>(maxLength: 15, nullable: true),
-                    FechaNacimiento = table.Column<DateTime>(nullable: false)
+                    FechaNacimiento = table.Column<DateTime>(type: "datetime", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -245,22 +246,22 @@ namespace IncidentApp.Migrations
                 columns: table => new
                 {
                     IncidenteId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Estatus = table.Column<string>(maxLength: 2, nullable: true),
                     Borrado = table.Column<bool>(nullable: false),
                     CreadoPor = table.Column<int>(nullable: false),
-                    FechaRegistro = table.Column<DateTime>(nullable: false),
+                    FechaRegistro = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModificadoPor = table.Column<int>(nullable: false),
-                    FechaModificacion = table.Column<DateTime>(nullable: false),
+                    FechaModificacion = table.Column<DateTime>(type: "datetime", nullable: false),
                     CreatorId = table.Column<int>(nullable: true),
                     UpdaterId = table.Column<int>(nullable: true),
                     UsuarioReportaId = table.Column<int>(nullable: false),
-                    UsuarioAsignadoId = table.Column<int>(nullable: false),
+                    UsuarioAsignadoId = table.Column<int>(nullable: true),
                     PrioridadId = table.Column<int>(nullable: false),
-                    DepartamentoId = table.Column<int>(nullable: false),
+                    DepartamentoId = table.Column<int>(nullable: true),
                     Titulo = table.Column<string>(maxLength: 200, nullable: false),
                     Descripcion = table.Column<string>(nullable: false),
-                    FechaCierre = table.Column<DateTime>(nullable: false),
+                    FechaCierre = table.Column<DateTime>(type: "datetime", nullable: true),
                     ComentarioCierre = table.Column<string>(maxLength: 500, nullable: true)
                 },
                 constraints: table =>
@@ -282,7 +283,7 @@ namespace IncidentApp.Migrations
                         column: x => x.DepartamentoId,
                         principalTable: "Departamentos",
                         principalColumn: "DepartamentoId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Incidentes_Prioridades_PrioridadId",
                         column: x => x.PrioridadId,
@@ -307,13 +308,13 @@ namespace IncidentApp.Migrations
                 columns: table => new
                 {
                     HistorialIncidenteId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Estatus = table.Column<string>(maxLength: 2, nullable: true),
                     Borrado = table.Column<bool>(nullable: false),
                     CreadoPor = table.Column<int>(nullable: false),
-                    FechaRegistro = table.Column<DateTime>(nullable: false),
+                    FechaRegistro = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModificadoPor = table.Column<int>(nullable: false),
-                    FechaModificacion = table.Column<DateTime>(nullable: false),
+                    FechaModificacion = table.Column<DateTime>(type: "datetime", nullable: false),
                     CreatorId = table.Column<int>(nullable: true),
                     UpdaterId = table.Column<int>(nullable: true),
                     IncidenteId = table.Column<int>(nullable: false),
@@ -341,6 +342,11 @@ namespace IncidentApp.Migrations
                         principalColumn: "EmpleadoId",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Usuarios",
+                columns: new[] { "EmpleadoId", "FechaRegistro", "CreadoPor", "CreatorId", "Borrado", "Contrasena", "Estatus", "FechaModificacion", "ModificadoPor", "UpdaterId", "NombreUsuario" },
+                values: new object[] { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, false, "ylwYeR9FMHE=", "1", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null, "Administrator" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Departamentos_CreatorId",
@@ -391,8 +397,7 @@ namespace IncidentApp.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Incidentes_UsuarioAsignadoId",
                 table: "Incidentes",
-                column: "UsuarioAsignadoId",
-                unique: true);
+                column: "UsuarioAsignadoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Incidentes_CreatorId",
@@ -412,8 +417,7 @@ namespace IncidentApp.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Incidentes_UsuarioReportaId",
                 table: "Incidentes",
-                column: "UsuarioReportaId",
-                unique: true);
+                column: "UsuarioReportaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Incidentes_UpdaterId",

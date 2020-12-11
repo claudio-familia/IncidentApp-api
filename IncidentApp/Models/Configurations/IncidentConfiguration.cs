@@ -26,13 +26,13 @@ namespace IncidentApp.Models.Configurations
 
             builder.Property(x => x.Title).HasColumnName("Titulo").HasMaxLength(200).IsRequired();
             builder.Property(x => x.Description).HasColumnName("Descripcion").IsRequired();
-            builder.Property(x => x.ClosedDate).HasColumnName("FechaCierre");
+            builder.Property(x => x.ClosedDate).HasColumnName("FechaCierre").HasColumnType("datetime");
             builder.Property(x => x.ClosedComment).HasColumnName("ComentarioCierre").HasMaxLength(500);
 
             builder.Property(x => x.Status).HasColumnName("Estatus").HasMaxLength(2);
             builder.Property(x => x.IsDeleted).HasColumnName("Borrado");
-            builder.Property(x => x.CreatedAt).HasColumnName("FechaRegistro");
-            builder.Property(x => x.UpdatedAt).HasColumnName("FechaModificacion");
+            builder.Property(x => x.CreatedAt).HasColumnName("FechaRegistro").HasColumnType("datetime");
+            builder.Property(x => x.UpdatedAt).HasColumnName("FechaModificacion").HasColumnType("datetime");
             builder.Property(x => x.CreatedBy).HasColumnName("CreadoPor");
             builder.Property(x => x.UpdatedBy).HasColumnName("ModificadoPor");
         }

@@ -1,4 +1,5 @@
 ﻿using IncidentApp.Models.Configurations;
+using IncidentApp.Models.Constants;
 using IncidentApp.Models.Enums;
 using IncidentApp.Services.Contracts;
 using IncidentApp.Utils;
@@ -39,7 +40,7 @@ namespace IncidentApp.Models.Context
                     Id = 1,
                     Username = "Administrator",
                     Password = cryptography.Encrypt("1234", configuration["Authentication:SecretKey"]),
-                    Status = StatusEnum.Active.ToString()
+                    Status = StatusConstant.Active
                 });
             });
         }
