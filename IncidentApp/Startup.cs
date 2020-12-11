@@ -34,7 +34,7 @@ namespace IncidentApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddDbContext<IncidentContext>(options => options.UseSqlServer(configuration["ConnectionStrings:DbIncidents"]));
+            services.AddDbContext<IncidentContext>(options => options.UseMySQL(configuration["ConnectionStrings:DbIncidentsMySQL"]));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IMapper, Mapper>();
             services.AddRepositories();

@@ -92,7 +92,7 @@ namespace IncidentApp.Services
             employee.BornDate = entity.BornDate;
             employee.PositionId = entity.PositionId;
             employee.UserId = entity.UserId;            
-
+             
             employee.UpdatedAt = DateTime.Now;
             employee.UpdatedBy = UserId;
 
