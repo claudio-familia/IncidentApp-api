@@ -56,7 +56,7 @@ namespace IncidentApp.Services
 
                 return new NotFoundObjectResult("Invalid User");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return new StatusCodeResult((int)HttpStatusCode.InternalServerError);
             }
