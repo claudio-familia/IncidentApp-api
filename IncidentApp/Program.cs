@@ -17,10 +17,10 @@ namespace IncidentApp
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-            using (var scope = host.Services.CreateScope())
-            {
-                scope.ServiceProvider.GetRequiredService<IncidentContext>().Database.Migrate();
-            }
+            //using (var scope = host.Services.CreateScope())
+            //{
+            //    scope.ServiceProvider.GetRequiredService<IncidentContext>().Database.Migrate();
+            //}
             host.Run();
         }
 
