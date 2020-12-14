@@ -3,6 +3,7 @@ using IncidentApp.Services.Contracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 
 namespace IncidentApp.Controllers.Base
@@ -31,12 +32,20 @@ namespace IncidentApp.Controllers.Base
             }
         }
 
+        /// <summary>
+        /// Get a list of current type.
+        /// </summary>
+        /// <returns>A list of current type</returns>
+        /// <response code="200">Returns a list of current type</response>
+        /// <response code="400">If the item is null</response>
         [HttpGet]
+        [Produces("application/json")]
+        [ProducesResponseType(200)]        
         public virtual IActionResult Get()
         {
             try
             {
-                var response = baseService.GetAll();
+                IEnumerable<T> response = baseService.GetAll();
                 return Ok(response);
             }
             catch (Exception ex)
@@ -45,8 +54,17 @@ namespace IncidentApp.Controllers.Base
             }
         }
 
+        /// <summary>
+        /// Get a instance of the current type.
+        /// </summary>        
+        /// <returns>A instance of the current type</returns>
+        /// <response code="200">Returns a instance of the current type</response>
+        /// <response code="404">If the item is not found</response>   
         [HttpGet]
         [Route("{id}")]
+        [Produces("application/json")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
         public virtual IActionResult Get(int id)
         {
             try
@@ -63,13 +81,19 @@ namespace IncidentApp.Controllers.Base
             }
         }
 
+        /// <summary>
+        /// Create a new instance of the current type.
+        /// </summary>        
+        /// <returns>A instance just created of the current type</returns>
+        /// <response code="201">Returns the instance just created of the current type</response>        
         [HttpPost]
+        [ProducesResponseType(201)]        
         public virtual IActionResult Post(Dto entity)
         {
             try
             {
                 var response = baseService.Add(entity);
-                return Ok(response);
+                return Created("", response);
             }
             catch (Exception ex)
             {
@@ -77,7 +101,15 @@ namespace IncidentApp.Controllers.Base
             }
         }
 
+        /// <summary>
+        /// Update a instance of the current type.
+        /// </summary>        
+        /// <returns>A instance just updated of the current type</returns>
+        /// <response code="200">Returns a instance just updated of the current type</response>
+        /// <response code="404">If the item is not found</response>   
         [HttpPut]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
         public virtual IActionResult Put(Dto entity)
         {
             try
@@ -94,8 +126,16 @@ namespace IncidentApp.Controllers.Base
             }
         }
 
+        /// <summary>
+        /// Delete a instance of the current type and returned.
+        /// </summary>        
+        /// <returns>A instance of the current type</returns>
+        /// <response code="200">Returns a instance just deleted of the current type</response>
+        /// <response code="404">If the item is not found</response>   
         [HttpDelete]
         [Route("{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
         public virtual IActionResult Delete(int id)
         {
             try

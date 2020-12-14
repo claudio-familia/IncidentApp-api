@@ -21,6 +21,12 @@ namespace IncidentApp.Controllers
             _baseService = baseService;
         }
 
+        /// <summary>
+        /// Get a instance of the current type.
+        /// </summary>        
+        /// <returns>A instance of the current type</returns>
+        /// <response code="200">Returns a instance of the current type</response>
+        /// <response code="404">If the item is not found</response>
         [HttpGet]
         public override IActionResult Get()
         {
