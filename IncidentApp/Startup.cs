@@ -116,6 +116,7 @@ namespace IncidentApp
             app.UseSwaggerUI(swag =>
             {
                 swag.SwaggerEndpoint("v1/swagger.json", "IncidentApp Api");
+                swag.RoutePrefix = string.Empty;
             });
         }
     }
