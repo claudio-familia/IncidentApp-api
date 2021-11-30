@@ -61,28 +61,6 @@ namespace IncidentApp
                 };
             });
 
-            services.AddSwaggerGen(swag =>
-            {
-                swag.SwaggerDoc("v1", new OpenApiInfo()
-                {
-                    Title = "IncidentApp Api",
-                    Version = "V1",
-                    Description = "An Application to manage incidents from creating to resolve them.",
-                    Contact = new OpenApiContact() { 
-                        Name= "Claudio Familia", 
-                        Email = "claudio.familia.morel@gmail.com", 
-                        Url = new Uri("https://github.com/claudio-familia") 
-                    },
-                });
-
-                swag.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme() {
-                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
-                    Name = "Authorization",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey
-                });
-            });
-
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
@@ -109,14 +87,6 @@ namespace IncidentApp
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-            });
-
-            app.UseSwagger();
-
-            app.UseSwaggerUI(swag =>
-            {
-                swag.SwaggerEndpoint("swagger/v1/swagger.json", "IncidentApp Api");
-                swag.RoutePrefix = string.Empty;
             });
         }
     }
