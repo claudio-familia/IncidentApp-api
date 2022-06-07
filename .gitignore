@@ -1,4 +1,6 @@
 .vs/
 IncidentApp/bin
 IncidentApp/obj
+IncidentApp.Tests/bin
+IncidentApp.Tests/obj
 WebPortal/node_modules

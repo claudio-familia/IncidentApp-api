@@ -29,6 +29,9 @@ namespace IncidentApp.Services
 
         public Incident Add(IncidentDto entity)
         {
+            if (string.IsNullOrEmpty(entity.Title)) throw new ArgumentNullException("Title is required");
+            if (entity.PriorityId < 0) throw new ArgumentNullException("Priority is required");
+
             Incident newIncident = mapper.Map<Incident>(entity);
 
             newIncident.CreatedAt = DateTime.Now;
